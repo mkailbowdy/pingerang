@@ -2,11 +2,9 @@ package main
 
 import (
 	"context"
-	"crypto/sha256"
 	"database/sql"
 	"flag"
 	"fmt"
-	"hash"
 	"log"
 	"os"
 	"time"
@@ -21,7 +19,7 @@ type application struct {
 }
 
 func main() {
-
+	url := "https://p-bandai.jp/item/item-1000241724/"
 	dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
 	flag.Parse()
 	db, err := openDB(*dsn)
@@ -34,17 +32,23 @@ func main() {
 	app := &application{
 		sites: &models.SiteModel{DB: db},
 	}
-	fmt.Printf("%v", app)
 
-	url := "https://p-bandai.jp/item/item-1000241724/"
-	h := drive(url)
-	sites := make(map[string][]byte)
-	sites[url] = h.Sum(nil)
+	err = drive(url)
+	if err != nil {
+		fmt.Printf("There was an error: %q", err)
+		os.Exit(1)
+	}
 
-	fmt.Printf("%s\n", string(sites[url]))
+	_, err = app.sites.Insert(url)
+	if err != nil {
+		fmt.Printf("There was an error: %q", err)
+		os.Exit(1)
+	}
+
+	return
 }
 
-func drive(url string) hash.Hash {
+func drive(url string) error {
 	var html string
 	ctx, cancel := chromedp.NewContext(context.Background())
 	defer cancel()
@@ -56,12 +60,10 @@ func drive(url string) hash.Hash {
 		chromedp.OuterHTML("body", &html),
 	)
 	if err != nil {
-		fmt.Println("stop 1")
+		fmt.Println("drive function: stop 1")
 		log.Fatal(err)
 	}
-	h := sha256.New()
-	h.Write([]byte(html))
-	return h
+	return nil
 }
 
 func openDB(dsn string) (*sql.DB, error) {
