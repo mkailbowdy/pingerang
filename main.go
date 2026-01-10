@@ -41,7 +41,7 @@ func main() {
 	sites := make(map[string][]byte)
 	sites[url] = h.Sum(nil)
 
-	fmt.Printf("%x\n", sites[url])
+	fmt.Printf("%s\n", string(sites[url]))
 }
 
 func drive(url string) hash.Hash {
