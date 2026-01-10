@@ -12,7 +12,13 @@ import (
 	"time"
 
 	"github.com/chromedp/chromedp"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/mkailbowdy/internal/models"
 )
+
+type application struct {
+	sites *models.SiteModel
+}
 
 func main() {
 
@@ -20,10 +26,16 @@ func main() {
 	flag.Parse()
 	db, err := openDB(*dsn)
 	if err != nil {
-		fmt.Println("error opening database pool")
+		fmt.Printf("error opening database pool: %s", err.Error())
 		os.Exit(1)
 	}
 	defer db.Close()
+
+	app := &application{
+		sites: &models.SiteModel{DB: db},
+	}
+	fmt.Printf("%v", app)
+
 	url := "https://p-bandai.jp/item/item-1000241724/"
 	h := drive(url)
 	sites := make(map[string][]byte)
