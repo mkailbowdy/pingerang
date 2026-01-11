@@ -10,7 +10,7 @@ import (
 	"github.com/chromedp/chromedp"
 )
 
-func drive(url string) (string, string) {
+func driveHash(url string) (string, string) {
 	var html string
 	ctx, cancel := chromedp.NewContext(context.Background())
 	defer cancel()
@@ -22,7 +22,7 @@ func drive(url string) (string, string) {
 		chromedp.OuterHTML("body", &html),
 	)
 	if err != nil {
-		fmt.Println("drive function: stop 1")
+		fmt.Println("driveHash function: stop 1")
 		log.Fatal(err)
 	}
 	hash := sha256.New()

@@ -16,10 +16,6 @@ type application struct {
 	sites *models.SiteModel
 }
 
-//func urlCompare(w http.ResponseWriter, r *http.Request) {
-//	w.Write([]byte(""))
-//}
-
 func main() {
 	dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
 	flag.Parse()

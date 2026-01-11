@@ -2,6 +2,7 @@ package models
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 	"time"
 )
@@ -32,6 +33,27 @@ func (m *SiteModel) Insert(url string, urlhash string, pagehash string) (int, er
 	return int(id), nil
 }
 
-func (m *SiteModel) Get(url string) (Site, error) {
-	return Site{}, nil
+func (m *SiteModel) Get(urlhash string) (string, error) {
+	stmt := `SELECT pagehash FROM sites WHERE urlhash = ?`
+	row := m.DB.QueryRow(stmt, urlhash)
+	var storedHash string
+	err := row.Scan(&storedHash)
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return "", ErrNoRecord
+		} else {
+			return "", err
+		}
+	}
+	return storedHash, err
+}
+
+func (m *SiteModel) Update(urlhash, pagehash string) error {
+	stmt := `UPDATE sites SET pagehash = ? WHERE urlhash = ?`
+	_, err := m.DB.Exec(stmt, urlhash, pagehash)
+	if err != nil {
+		fmt.Printf("%s", err.Error())
+		return err
+	}
+	return nil
 }
