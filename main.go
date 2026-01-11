@@ -2,10 +2,12 @@ package main
 
 import (
 	"context"
+	"crypto/sha256"
 	"database/sql"
 	"flag"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"time"
 
@@ -18,8 +20,14 @@ type application struct {
 	sites *models.SiteModel
 }
 
+func home(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Hello from Pingerang"))
+}
+
 func main() {
-	url := "https://p-bandai.jp/item/item-1000241724/"
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", home)
+	url := "https://p-bandai.jp/item/item-1000243597/"
 	dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
 	flag.Parse()
 	db, err := openDB(*dsn)
@@ -33,22 +41,23 @@ func main() {
 		sites: &models.SiteModel{DB: db},
 	}
 
-	err = drive(url)
+	urlhash, pagehash, err := drive(url)
 	if err != nil {
 		fmt.Printf("There was an error: %q", err)
 		os.Exit(1)
 	}
 
-	_, err = app.sites.Insert(url)
+	_, err = app.sites.Insert(url, urlhash, pagehash)
 	if err != nil {
 		fmt.Printf("There was an error: %q", err)
 		os.Exit(1)
 	}
 
-	return
+	err = http.ListenAndServe(":4000", mux)
+	log.Fatal(err)
 }
 
-func drive(url string) error {
+func drive(url string) (string, string, error) {
 	var html string
 	ctx, cancel := chromedp.NewContext(context.Background())
 	defer cancel()
@@ -56,14 +65,21 @@ func drive(url string) error {
 	err := chromedp.Run(
 		ctx,
 		chromedp.Navigate(url),
-		chromedp.Sleep(3*time.Second),
+		chromedp.Sleep(5*time.Second),
 		chromedp.OuterHTML("body", &html),
 	)
 	if err != nil {
 		fmt.Println("drive function: stop 1")
 		log.Fatal(err)
 	}
-	return nil
+	hash := sha256.New()
+	hash.Write([]byte(url))
+	urlhash := fmt.Sprintf("%x", hash.Sum(nil))
+
+	hash = sha256.New()
+	hash.Write([]byte(html))
+	pagehash := fmt.Sprintf("%x", hash.Sum(nil))
+	return urlhash, pagehash, nil
 }
 
 func openDB(dsn string) (*sql.DB, error) {
@@ -76,6 +92,5 @@ func openDB(dsn string) (*sql.DB, error) {
 		db.Close()
 		return nil, err
 	}
-
 	return db, nil
 }

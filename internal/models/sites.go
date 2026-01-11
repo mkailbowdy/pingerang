@@ -1,9 +1,9 @@
 package models
 
 import (
-	"crypto/sha256"
 	"database/sql"
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -18,22 +18,18 @@ type SiteModel struct {
 	DB *sql.DB
 }
 
-func (m *SiteModel) Insert(url string) (int, error) {
-	stmt := `INSERT INTO sites (url, hash, created) VALUES (?, ?, UTC_TIMESTAMP())`
+func (m *SiteModel) Insert(url string, urlhash string, pagehash string) (int, error) {
+	stmt := `INSERT INTO sites (url, created, urlhash, pagehash) VALUES (?, UTC_TIMESTAMP(), ?, ?)`
 
-	hash := sha256.New()
-	hash.Write([]byte(url))
-	hashHex := fmt.Sprintf("%x", hash.Sum(nil))
-	result, err := m.DB.Exec(stmt, url, hashHex)
+	result, err := m.DB.Exec(stmt, url, urlhash, pagehash)
 	if err != nil {
-		fmt.Printf("There was an error: %q\n", err)
-		return 0, nil
+		log.Fatal(err.Error())
 	}
 	id, err := result.LastInsertId()
 	if err != nil {
-		fmt.Printf("There was an error: %q\n", err)
-		return 0, nil
+		log.Fatal(err.Error())
 	}
+	fmt.Println("DB insert complete!")
 	return int(id), nil
 }
 
