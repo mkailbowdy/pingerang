@@ -3,7 +3,6 @@ package models
 import (
 	"database/sql"
 	"fmt"
-	"log"
 	"time"
 )
 
@@ -23,11 +22,11 @@ func (m *SiteModel) Insert(url string, urlhash string, pagehash string) (int, er
 
 	result, err := m.DB.Exec(stmt, url, urlhash, pagehash)
 	if err != nil {
-		log.Fatal(err.Error())
+		return 0, err
 	}
 	id, err := result.LastInsertId()
 	if err != nil {
-		log.Fatal(err.Error())
+		return 0, err
 	}
 	fmt.Println("DB insert complete!")
 	return int(id), nil

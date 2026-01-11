@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -18,6 +19,7 @@ func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
 	urlhash, pagehash := drive(url)
 	_, err = app.sites.Insert(url, urlhash, pagehash)
 	if err != nil {
-		log.Fatal(err.Error())
+		fmt.Printf("%s", err.Error())
+		return
 	}
 }
