@@ -8,10 +8,11 @@ import (
 )
 
 type Site struct {
-	ID      int
-	Url     string
-	Hash    string
-	Created time.Time
+	ID       int
+	Url      string
+	Created  time.Time
+	Urlhash  string
+	Pagehash string
 }
 
 type SiteModel struct {
@@ -33,19 +34,19 @@ func (m *SiteModel) Insert(url string, urlhash string, pagehash string) (int, er
 	return int(id), nil
 }
 
-func (m *SiteModel) Get(urlhash string) (string, error) {
-	stmt := `SELECT pagehash FROM sites WHERE urlhash = ?`
+func (m *SiteModel) Get(urlhash string) (Site, error) {
+	stmt := `SELECT id, url, created, urlhash, pagehash FROM sites WHERE urlhash = ?`
 	row := m.DB.QueryRow(stmt, urlhash)
-	var storedHash string
-	err := row.Scan(&storedHash)
+	var s Site
+	err := row.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			return "", ErrNoRecord
+			return Site{}, ErrNoRecord
 		} else {
-			return "", err
+			return Site{}, err
 		}
 	}
-	return storedHash, err
+	return s, err
 }
 
 func (m *SiteModel) Update(urlhash, pagehash string) error {
@@ -56,4 +57,24 @@ func (m *SiteModel) Update(urlhash, pagehash string) error {
 		return err
 	}
 	return nil
+}
+
+func (m *SiteModel) GetAll() ([]Site, error) {
+	stmt := `SELECT id, url, created, urlhash, pagehash FROM sites`
+	rows, err := m.DB.Query(stmt)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var sites []Site
+	for rows.Next() {
+		var s Site
+		err = rows.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash)
+		if err != nil {
+			return nil, err
+		}
+		sites = append(sites, s)
+	}
+	return sites, nil
 }

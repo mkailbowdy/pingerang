@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/mkailbowdy/internal/models"
 )
@@ -14,13 +15,10 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	url := r.PostForm.Get("url")
+	url := urlPostForm(r)
 	urlhash, pagehash := driveHash(url)
-	_, err = app.sites.Insert(url, urlhash, pagehash)
+
+	_, err := app.sites.Insert(url, urlhash, pagehash)
 	if err != nil {
 		fmt.Printf("%s", err.Error())
 		return
@@ -28,33 +26,55 @@ func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) urlComparePost(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	url := r.PostForm.Get("url")
+	url := urlPostForm(r)
 	urlhash, pagehash := driveHash(url)
-	storedHash, err := app.sites.Get(urlhash)
+
+	err := app.compare(url, urlhash, pagehash)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func (app *application) urlCompareBackground() {
+	// Once an hour
+	ticker := time.NewTicker(2 * time.Second)
+	defer ticker.Stop()
+	for range ticker.C {
+		// Get all the urlhash from database and store in a []string
+		sites, err := app.sites.GetAll()
+		if err != nil {
+			log.Fatal(err)
+			return
+		}
+		for i, s := range sites {
+			fmt.Printf("Check #%d\n", i)
+			urlhash, pagehash := driveHash(s.Url)
+			err = app.compare(s.Url, urlhash, pagehash)
+		}
+	}
+}
+
+func (app *application) compare(url string, urlhash string, pagehash string) error {
+	fmt.Printf("Now checking: %s\n", url)
+	site, err := app.sites.Get(urlhash)
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
-			http.NotFound(w, r)
 			fmt.Printf("This url has not been registered.\n")
-			return
+			return err
 		} else {
 			fmt.Printf("Error: %s", err.Error())
 		}
 	}
-
-	if storedHash == pagehash {
-		fmt.Printf("No changes on the page.\n")
-		return
+	if site.Pagehash == pagehash {
+		fmt.Printf("No changes on this page.\n")
+		return nil
 	}
-
-	fmt.Printf("The page has changed: %s\n", url)
+	fmt.Printf("The page has changed!\n")
 	err = app.sites.Update(urlhash, pagehash)
 	if err != nil {
 		fmt.Printf("%s", err.Error())
-		return
+		return err
 	}
-	fmt.Printf("Record updated.\n Old Hash: %s\n New Hash:%s\n", storedHash, pagehash)
+	fmt.Printf("-Old Hash: %s\n-New Hash:%s\n", site.Pagehash, pagehash)
+	return nil
 }

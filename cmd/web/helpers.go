@@ -5,10 +5,19 @@ import (
 	"crypto/sha256"
 	"fmt"
 	"log"
+	"net/http"
 	"time"
 
 	"github.com/chromedp/chromedp"
 )
+
+func urlPostForm(r *http.Request) string {
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	return r.PostForm.Get("url")
+}
 
 func driveHash(url string) (string, string) {
 	var html string

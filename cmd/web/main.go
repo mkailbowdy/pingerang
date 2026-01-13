@@ -17,6 +17,7 @@ type application struct {
 }
 
 func main() {
+
 	dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
 	flag.Parse()
 	db, err := openDB(*dsn)
@@ -29,6 +30,8 @@ func main() {
 	app := &application{
 		sites: &models.SiteModel{DB: db},
 	}
+
+	go app.urlCompareBackground()
 
 	fmt.Println("Starting server")
 	err = http.ListenAndServe(":4000", app.routes())
