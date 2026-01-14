@@ -15,10 +15,11 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
-	url := urlPostForm(r)
-	urlhash, pagehash := driveHash(url)
+	url, selector := urlPostForm(r)
+	fmt.Printf("%s and %s\n", url, selector)
+	urlhash, pagehash := driveHash(url, selector)
 
-	_, err := app.sites.Insert(url, urlhash, pagehash)
+	_, err := app.sites.Insert(url, urlhash, pagehash, selector)
 	if err != nil {
 		fmt.Printf("%s", err.Error())
 		return
@@ -26,8 +27,8 @@ func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) urlComparePost(w http.ResponseWriter, r *http.Request) {
-	url := urlPostForm(r)
-	urlhash, pagehash := driveHash(url)
+	url, selector := urlPostForm(r)
+	urlhash, pagehash := driveHash(url, selector)
 
 	err := app.compare(url, urlhash, pagehash)
 	if err != nil {
@@ -37,7 +38,7 @@ func (app *application) urlComparePost(w http.ResponseWriter, r *http.Request) {
 
 func (app *application) urlCompareBackground() {
 	// Once an hour
-	ticker := time.NewTicker(2 * time.Second)
+	ticker := time.NewTicker(10 * time.Second)
 	defer ticker.Stop()
 	for range ticker.C {
 		// Get all the urlhash from database and store in a []string
@@ -48,7 +49,7 @@ func (app *application) urlCompareBackground() {
 		}
 		for i, s := range sites {
 			fmt.Printf("Check #%d\n", i)
-			urlhash, pagehash := driveHash(s.Url)
+			urlhash, pagehash := driveHash(s.Url, s.Selector)
 			err = app.compare(s.Url, urlhash, pagehash)
 		}
 	}
@@ -56,7 +57,7 @@ func (app *application) urlCompareBackground() {
 
 func (app *application) compare(url string, urlhash string, pagehash string) error {
 	fmt.Printf("Now checking: %s\n", url)
-	site, err := app.sites.Get(urlhash)
+	s, err := app.sites.Get(urlhash)
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
 			fmt.Printf("This url has not been registered.\n")
@@ -65,7 +66,7 @@ func (app *application) compare(url string, urlhash string, pagehash string) err
 			fmt.Printf("Error: %s", err.Error())
 		}
 	}
-	if site.Pagehash == pagehash {
+	if s.Pagehash == pagehash {
 		fmt.Printf("No changes on this page.\n")
 		return nil
 	}
@@ -75,6 +76,6 @@ func (app *application) compare(url string, urlhash string, pagehash string) err
 		fmt.Printf("%s", err.Error())
 		return err
 	}
-	fmt.Printf("-Old Hash: %s\n-New Hash:%s\n", site.Pagehash, pagehash)
+	fmt.Printf("-Old Hash: %s\n-New Hash: %s\n", s.Pagehash, pagehash)
 	return nil
 }

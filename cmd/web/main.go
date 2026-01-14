@@ -31,7 +31,7 @@ func main() {
 		sites: &models.SiteModel{DB: db},
 	}
 
-	go app.urlCompareBackground()
+	//go app.urlCompareBackground()
 
 	fmt.Println("Starting server")
 	err = http.ListenAndServe(":4000", app.routes())
