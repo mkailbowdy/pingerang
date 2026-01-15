@@ -58,7 +58,7 @@ func (app *application) urlCompareBackground() {
 			urlhash, pagehash := driveHash(s.Url, s.Selector)
 			err = app.compare(s.Url, urlhash, pagehash)
 		}
-		fmt.Println("Session complete.\n")
+		fmt.Printf("Session complete.\n\n")
 	}
 }
 
