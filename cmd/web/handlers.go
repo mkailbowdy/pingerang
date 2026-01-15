@@ -15,7 +15,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
-	url, selector := urlPostForm(r)
+	url, selector := urlSelectorPostForm(r)
 	fmt.Printf("%s and %s\n", url, selector)
 	urlhash, pagehash := driveHash(url, selector)
 
@@ -27,10 +27,15 @@ func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) urlComparePost(w http.ResponseWriter, r *http.Request) {
-	url, selector := urlPostForm(r)
-	urlhash, pagehash := driveHash(url, selector)
+	url := urlPostForm(r)
+	s, err := app.sites.Get(url)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	urlhash, pagehash := driveHash(s.Url, s.Selector)
 
-	err := app.compare(url, urlhash, pagehash)
+	err = app.compare(url, urlhash, pagehash)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -57,7 +62,7 @@ func (app *application) urlCompareBackground() {
 
 func (app *application) compare(url string, urlhash string, pagehash string) error {
 	fmt.Printf("Now checking: %s\n", url)
-	s, err := app.sites.Get(urlhash)
+	s, err := app.sites.Get(url)
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
 			fmt.Printf("This url has not been registered.\n")

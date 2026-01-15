@@ -35,9 +35,9 @@ func (m *SiteModel) Insert(url, urlhash, pagehash, selector string) (int, error)
 	return int(id), nil
 }
 
-func (m *SiteModel) Get(urlhash string) (Site, error) {
-	stmt := `SELECT id, url, created, urlhash, pagehash, selector FROM sites WHERE urlhash = ?`
-	row := m.DB.QueryRow(stmt, urlhash)
+func (m *SiteModel) Get(url string) (Site, error) {
+	stmt := `SELECT id, url, created, urlhash, pagehash, selector FROM sites WHERE url = ?`
+	row := m.DB.QueryRow(stmt, url)
 	var s Site
 	err := row.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash, &s.Selector)
 	if err != nil {

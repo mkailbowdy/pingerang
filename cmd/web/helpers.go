@@ -6,11 +6,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/chromedp/chromedp"
 )
 
-func urlPostForm(r *http.Request) (string, string) {
+func urlSelectorPostForm(r *http.Request) (string, string) {
 	err := r.ParseForm()
 	if err != nil {
 		log.Fatal(err.Error())
@@ -19,43 +20,55 @@ func urlPostForm(r *http.Request) (string, string) {
 	selector := r.PostForm.Get("selector")
 	return url, selector
 }
+func urlPostForm(r *http.Request) string {
+	err := r.ParseForm()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	url := r.PostForm.Get("url")
+	return url
+}
 
 func driveHash(url, selector string) (string, string) {
 
-	var html string
 	opts := append(chromedp.DefaultExecAllocatorOptions[:],
-		chromedp.DisableGPU,
 		chromedp.Flag("headless", false),
+		chromedp.UserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"),
+		chromedp.NoDefaultBrowserCheck,
+		chromedp.Flag("disable-blink-features", "AutomationControlled"),
 	)
-
 	allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
 	defer cancel()
 
-	// also set up a custom logger
-	taskCtx, cancel := chromedp.NewContext(allocCtx, chromedp.WithLogf(log.Printf))
+	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
 
+	ctx, cancel = context.WithTimeout(ctx, 30*time.Second)
+	defer cancel()
+
+	var html string
+
 	err := chromedp.Run(
-		taskCtx,
+		ctx,
 		chromedp.Navigate(url),
+		// Wait for the specific element to appear in the DOM
 		chromedp.WaitVisible(selector, chromedp.ByQuery),
-		chromedp.OuterHTML(selector, &html, chromedp.ByQuery),
+		chromedp.OuterHTML(selector, &html),
 	)
+
 	if err != nil {
-		fmt.Println("driveHash function: stop 1")
-		log.Fatal(err)
+		log.Println("something is wrong:", err)
+		return "", ""
 	}
 	fmt.Println("HTML:\n", html)
 
 	hash := sha256.New()
 	hash.Write([]byte(url))
 	urlhash := fmt.Sprintf("%x", hash.Sum(nil))
-	fmt.Printf("urlhash: %s\n", urlhash)
 
 	hash.Reset()
 	hash.Write([]byte(html))
 	pagehash := fmt.Sprintf("%x", hash.Sum(nil))
-	fmt.Printf("pagehash: %s\n", pagehash)
 
 	return urlhash, pagehash
 }
