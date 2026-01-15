@@ -76,6 +76,7 @@ func (app *application) compare(url string, urlhash string, pagehash string) err
 		return nil
 	}
 	fmt.Printf("The page has changed!\n")
+	sendUpdateMail(s.Url)
 	err = app.sites.Update(urlhash, pagehash)
 	if err != nil {
 		fmt.Printf("%s", err.Error())

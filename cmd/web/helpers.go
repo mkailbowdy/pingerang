@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/smtp"
 	"time"
 
 	"github.com/chromedp/chromedp"
@@ -53,7 +54,7 @@ func driveHash(url, selector string) (string, string) {
 		chromedp.Navigate(url),
 		// Wait for the specific element to appear in the DOM
 		chromedp.WaitVisible(selector, chromedp.ByQuery),
-		chromedp.OuterHTML(selector, &html),
+		chromedp.InnerHTML(selector, &html),
 	)
 
 	if err != nil {
@@ -71,4 +72,23 @@ func driveHash(url, selector string) (string, string) {
 	pagehash := fmt.Sprintf("%x", hash.Sum(nil))
 
 	return urlhash, pagehash
+}
+
+func sendUpdateMail(url string) {
+	// Set up authentication information.
+	auth := smtp.PlainAuth("", "myhkail.mendoza@gmail.com", "kizrnvfnknzxolbn", "smtp.gmail.com")
+
+	// Connect to the server, authenticate, set the sender and recipient,
+	// and send the email all in one step.
+	to := []string{"kailphotoshoots@gmail.com"}
+	msg := []byte("To: kailphotoshoots@gmail.com\r\n" +
+		"Subject: A page you follow has changed!\r\n" +
+		"\r\n" +
+		"View the page that changed below! (:\r\n" +
+		url)
+	err := smtp.SendMail("smtp.gmail.com:587", auth, "myhkail.mendoza@gmail.com", to, msg)
+	if err != nil {
+		fmt.Printf("Error here")
+		log.Fatal(err)
+	}
 }
