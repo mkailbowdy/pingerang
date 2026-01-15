@@ -52,16 +52,17 @@ func (app *application) urlCompareBackground() {
 			log.Fatal(err)
 			return
 		}
+		fmt.Printf("Session started.\n")
 		for i, s := range sites {
-			fmt.Printf("Check #%d\n", i)
+			fmt.Printf("Site %d\n", i+1)
 			urlhash, pagehash := driveHash(s.Url, s.Selector)
 			err = app.compare(s.Url, urlhash, pagehash)
 		}
+		fmt.Println("Session complete.\n")
 	}
 }
 
 func (app *application) compare(url string, urlhash string, pagehash string) error {
-	fmt.Printf("Now checking: %s\n", url)
 	s, err := app.sites.Get(url)
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
@@ -69,19 +70,19 @@ func (app *application) compare(url string, urlhash string, pagehash string) err
 			return err
 		} else {
 			fmt.Printf("Error: %s", err.Error())
+			return err
 		}
 	}
 	if s.Pagehash == pagehash {
 		fmt.Printf("No changes on this page.\n")
 		return nil
 	}
-	fmt.Printf("The page has changed!\n")
+	fmt.Printf("The page has changed!")
 	sendUpdateMail(s.Url)
 	err = app.sites.Update(urlhash, pagehash)
 	if err != nil {
 		fmt.Printf("%s", err.Error())
 		return err
 	}
-	fmt.Printf("-Old Hash: %s\n-New Hash: %s\n", s.Pagehash, pagehash)
 	return nil
 }

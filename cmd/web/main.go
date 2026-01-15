@@ -33,7 +33,7 @@ func main() {
 
 	go app.urlCompareBackground()
 
-	fmt.Println("Starting server")
+	fmt.Println("Starting server\n")
 	err = http.ListenAndServe(":4000", app.routes())
 	log.Fatal(err)
 }

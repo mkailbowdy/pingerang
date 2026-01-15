@@ -61,7 +61,6 @@ func driveHash(url, selector string) (string, string) {
 		log.Println("something is wrong:", err)
 		return "", ""
 	}
-	fmt.Println("HTML:\n", html)
 
 	hash := sha256.New()
 	hash.Write([]byte(url))
@@ -88,7 +87,7 @@ func sendUpdateMail(url string) {
 		url)
 	err := smtp.SendMail("smtp.gmail.com:587", auth, "myhkail.mendoza@gmail.com", to, msg)
 	if err != nil {
-		fmt.Printf("Error here")
+		fmt.Printf("Error while trying to send email.")
 		log.Fatal(err)
 	}
 }
