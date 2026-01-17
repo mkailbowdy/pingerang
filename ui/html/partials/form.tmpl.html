@@ -1,0 +1,29 @@
+{{define "contact-view"}}
+    <div hx-target="this" hx-swap="outerHTML">
+        <div><label>First Name</label>: {{.FirstName}}</div>
+        <div><label>Last Name</label>: {{.LastName}}</div>
+        <div><label>Email</label>: {{.Email}}</div>
+        <button hx-get="/contact/1/edit" class="btn primary">
+            Click To Edit
+        </button>
+    </div>
+{{end}}
+
+{{define "contact-edit"}}
+    <form hx-put="/contact/1" hx-target="this" hx-swap="outerHTML">
+        <div>
+            <label>First Name</label>
+            <input type="text" name="firstName" value="{{.FirstName}}">
+        </div>
+        <div>
+            <label>Last Name</label>
+            <input type="text" name="lastName" value="{{.LastName}}">
+        </div>
+        <div>
+            <label>Email Address</label>
+            <input type="email" name="email" value="{{.Email}}">
+        </div>
+        <button class="btn" type="submit">Submit</button>
+        <button class="btn" hx-get="/contact/1/view">Cancel</button>
+    </form>
+{{end}}
