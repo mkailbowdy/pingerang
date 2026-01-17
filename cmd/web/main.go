@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"flag"
 	"fmt"
-	"log"
+	"log/slog"
 	"net/http"
 	"os"
 
@@ -13,13 +13,20 @@ import (
 )
 
 type application struct {
-	sites *models.SiteModel
+	sites  *models.SiteModel
+	logger *slog.Logger
 }
 
 func main() {
+	addr := flag.String("addr", ":4000", "HTTP network address")
 
 	dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
 	flag.Parse()
+
+	logger := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
+		AddSource: true,
+	}))
+
 	db, err := openDB(*dsn)
 	if err != nil {
 		fmt.Printf("error opening database pool: %s", err.Error())
@@ -28,14 +35,16 @@ func main() {
 	defer db.Close()
 
 	app := &application{
-		sites: &models.SiteModel{DB: db},
+		sites:  &models.SiteModel{DB: db},
+		logger: logger,
 	}
 
-	go app.urlCompareBackground()
+	//go app.urlCompareBackground()
 
-	fmt.Printf("Starting server\n\n")
-	err = http.ListenAndServe(":4000", app.routes())
-	log.Fatal(err)
+	logger.Info("starting server", "addr", *addr)
+	err = http.ListenAndServe(*addr, app.routes())
+	logger.Error(err.Error())
+	os.Exit(1)
 }
 
 func openDB(dsn string) (*sql.DB, error) {
