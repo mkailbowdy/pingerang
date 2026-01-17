@@ -18,7 +18,9 @@ func urlSelectorPostForm(r *http.Request) (string, string) {
 		log.Fatal(err.Error())
 	}
 	url := r.PostForm.Get("url")
+	fmt.Printf("%s\n", url)
 	selector := r.PostForm.Get("selector")
+
 	return url, selector
 }
 func urlPostForm(r *http.Request) string {
@@ -54,7 +56,7 @@ func driveHash(url, selector string) (string, string) {
 		chromedp.Navigate(url),
 		// Wait for the specific element to appear in the DOM
 		chromedp.WaitVisible(selector, chromedp.ByQuery),
-		chromedp.InnerHTML(selector, &html),
+		chromedp.OuterHTML(selector, &html),
 	)
 
 	if err != nil {

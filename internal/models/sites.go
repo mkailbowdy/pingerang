@@ -47,7 +47,6 @@ func (m *SiteModel) Get(url string) (Site, error) {
 			return Site{}, err
 		}
 	}
-	fmt.Printf("URL: %s\n", s.Url)
 	return s, err
 }
 

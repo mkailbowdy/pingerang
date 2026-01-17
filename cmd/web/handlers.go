@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"time"
 
@@ -17,12 +16,15 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
 	url, selector := urlSelectorPostForm(r)
-	fmt.Printf("%s and %s\n", url, selector)
 	urlhash, pagehash := driveHash(url, selector)
-
+	app.logger.Info("Hashes created.", "urlhash", urlhash)
+	if len(urlhash) == 0 || len(pagehash) == 0 {
+		app.logger.Error("There's a problem with the css selector you're using. Please fix the syntax and try again.")
+		return
+	}
 	_, err := app.sites.Insert(url, urlhash, pagehash, selector)
 	if err != nil {
-		fmt.Printf("%s", err.Error())
+		app.logger.Error(err.Error())
 		return
 	}
 }
@@ -31,14 +33,14 @@ func (app *application) urlComparePost(w http.ResponseWriter, r *http.Request) {
 	url := urlPostForm(r)
 	s, err := app.sites.Get(url)
 	if err != nil {
-		fmt.Println(err)
+		app.logger.Error(err.Error())
 		return
 	}
 	urlhash, pagehash := driveHash(s.Url, s.Selector)
 
 	err = app.compare(url, urlhash, pagehash)
 	if err != nil {
-		log.Fatal(err)
+		app.logger.Error(err.Error())
 	}
 }
 
@@ -50,7 +52,7 @@ func (app *application) urlCompareBackground() {
 		// Get all the urlhash from database and store in a []string
 		sites, err := app.sites.GetAll()
 		if err != nil {
-			log.Fatal(err)
+			app.logger.Error(err.Error())
 			return
 		}
 		fmt.Printf("Session started.\n")
@@ -67,10 +69,10 @@ func (app *application) compare(url string, urlhash string, pagehash string) err
 	s, err := app.sites.Get(url)
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
-			fmt.Printf("This url has not been registered.\n")
+			app.logger.Error("This url has not been registered.\n")
 			return err
 		} else {
-			fmt.Printf("Error: %s", err.Error())
+			app.logger.Error(err.Error())
 			return err
 		}
 	}
@@ -82,7 +84,7 @@ func (app *application) compare(url string, urlhash string, pagehash string) err
 	sendUpdateMail(s.Url)
 	err = app.sites.Update(urlhash, pagehash)
 	if err != nil {
-		fmt.Printf("%s", err.Error())
+		app.logger.Error(err.Error())
 		return err
 	}
 	return nil
