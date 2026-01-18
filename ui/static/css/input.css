@@ -1,1 +1,3 @@
 @import "tailwindcss";
+/* By default, Tailwind v4 starts looking for HTML files in the folder where you run the command.  */
+@source "../../**/*.html";
