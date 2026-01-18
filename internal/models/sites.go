@@ -14,6 +14,7 @@ type Site struct {
 	Urlhash  string
 	Pagehash string
 	Selector string
+	Changed  bool
 }
 
 type SiteModel struct {
@@ -36,10 +37,10 @@ func (m *SiteModel) Insert(url, urlhash, pagehash, selector string) (int, error)
 }
 
 func (m *SiteModel) Get(url string) (Site, error) {
-	stmt := `SELECT id, url, created, urlhash, pagehash, selector FROM sites WHERE url = ?`
+	stmt := `SELECT id, url, created, urlhash, pagehash, selector, changed FROM sites WHERE url = ?`
 	row := m.DB.QueryRow(stmt, url)
 	var s Site
-	err := row.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash, &s.Selector)
+	err := row.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash, &s.Selector, &s.Changed)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return Site{}, ErrNoRecord
@@ -50,9 +51,20 @@ func (m *SiteModel) Get(url string) (Site, error) {
 	return s, err
 }
 
+func (m *SiteModel) UpdateChanged(urlhash string) error{
+	stmt := `UPDATE sites SET changed = ? WHERE urlhash = ?`
+	_, err := m.DB.Exec(stmt, 1, urlhash)
+	if err != nil {
+		fmt.Printf("%s\n", err.Error())
+		return err
+	}
+	fmt.Println("The status of the site has been successfully updated.")
+	return nil
+}
+
 func (m *SiteModel) Update(urlhash, pagehash string) error {
-	stmt := `UPDATE sites SET pagehash = ? WHERE urlhash = ?`
-	_, err := m.DB.Exec(stmt, pagehash, urlhash)
+	stmt := `UPDATE sites SET pagehash = ?, changed = ? WHERE urlhash = ?`
+	_, err := m.DB.Exec(stmt, pagehash, 0, urlhash)
 	if err != nil {
 		fmt.Printf("%s\n", err.Error())
 		return err
@@ -62,7 +74,7 @@ func (m *SiteModel) Update(urlhash, pagehash string) error {
 }
 
 func (m *SiteModel) GetAll() ([]Site, error) {
-	stmt := `SELECT id, url, created, urlhash, pagehash, selector FROM sites`
+	stmt := `SELECT id, url, created, urlhash, pagehash, selector, changed FROM sites`
 	rows, err := m.DB.Query(stmt)
 	if err != nil {
 		return nil, err
@@ -72,7 +84,7 @@ func (m *SiteModel) GetAll() ([]Site, error) {
 	var sites []Site
 	for rows.Next() {
 		var s Site
-		err = rows.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash, &s.Selector)
+		err = rows.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash, &s.Selector, &s.Changed)
 		if err != nil {
 			return nil, err
 		}

@@ -1,13 +1,15 @@
 {{define "base"}}
-    <!doctype html>
-    <html lang='en'>
-    <head>
-        <meta charset='utf-8'>
-        <title>{{template "title" .}} - Snippetbox</title>
-        <link rel="stylesheet" href="/static/css/output.css">
-        <script src="/static/js/htmx.min.js"></script>
-    </head>
-    <body>
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <title>{{template "title" .}} - Pingerang</title>
+    <link rel="stylesheet" href="/static/css/output.css">
+    <script src="/static/js/htmx.min.js"></script>
+</head>
+
+<body>
     <header>
         <h1><a href="/" class="text-indigo-500 text-4xl">
                 Pingerang
@@ -19,6 +21,7 @@
         {{template "main" .}}
     </main>
     <footer>Powered by <a href='https://golang.org/'>Go</a></footer>
-    </body>
-    </html>
+</body>
+
+</html>
 {{end}}

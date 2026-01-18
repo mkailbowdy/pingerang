@@ -9,11 +9,13 @@ func (app *application) routes() *http.ServeMux {
 	fileServer := http.FileServer(http.Dir("./ui/static/"))
 	mux.Handle("GET /static/", http.StripPrefix("/static", fileServer))
 	mux.HandleFunc("GET /{$}", app.home)
+	mux.HandleFunc("GET /dashboard", app.dashboard)
 	mux.HandleFunc("GET /contact/1", app.contact)
 	mux.HandleFunc("GET /contact/1/view", app.viewForm)
 	mux.HandleFunc("GET /contact/1/edit", app.editForm)
 	mux.HandleFunc("POST /url", app.urlCreatePost)
 	mux.HandleFunc("POST /url/compare", app.urlComparePost)
+	mux.HandleFunc("POST /url/{id}", app.updatePost)
 
 	return mux
 }

@@ -11,18 +11,6 @@ import (
 	"github.com/mkailbowdy/internal/models"
 )
 
-type Contact struct {
-	FirstName string
-	LastName  string
-	Email     string
-}
-
-var contact = Contact{
-	FirstName: "Gorge",
-	LastName:  "Fart",
-	Email:     "email@gmpa.com",
-}
-
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Server", "Go")
 
@@ -45,50 +33,6 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		log.Print(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
-}
-
-func (app *application) contact(w http.ResponseWriter, r *http.Request) {
-	files := []string{
-		"./ui/html/base.tmpl.html",
-		"./ui/html/partials/nav.tmpl.html",
-		"./ui/html/partials/form.tmpl.html",
-		"./ui/html/pages/contact.tmpl.html",
-	}
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-	ts.ExecuteTemplate(w, "base", contact)
-}
-
-func (app *application) viewForm(w http.ResponseWriter, r *http.Request) {
-	files := []string{
-		"./ui/html/partials/form.tmpl.html",
-	}
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-	ts.ExecuteTemplate(w, "contact-view", contact)
-}
-
-func (app *application) editForm(w http.ResponseWriter, r *http.Request) {
-	files := []string{
-		"./ui/html/partials/form.tmpl.html",
-	}
-
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-
-	ts.ExecuteTemplate(w, "contact-edit", contact)
 }
 
 func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
@@ -158,11 +102,125 @@ func (app *application) compare(url string, urlhash string, pagehash string) err
 		return nil
 	}
 	fmt.Printf("The page has changed!")
+	
+	// Update this snippets Changed column to true (1 in mysql)
+	err = app.sites.UpdateChanged(s.Urlhash)
+	if err != nil {
+		app.logger.Error(err.Error())
+	}
 	sendUpdateMail(s.Url)
+
+	return nil
+}
+func (app *application) updatePost(w http.ResponseWriter, r *http.Request) {
+	// id, err := strconv.Atoi(r.PathValue("id"))
+	// if err != nil || id < 1 {
+	// 	http.NotFound(w, r)
+	// 	return
+	// }
+	url := r.PostFormValue("url")
+	fmt.Printf("%s",url)
+	s, err := app.sites.Get(url)
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			http.NotFound(w, r)
+		} else {
+			app.serverError(w, r, err)
+		}
+		return
+	}
+	urlhash, pagehash := driveHash(s.Url, s.Selector)
 	err = app.sites.Update(urlhash, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
-		return err
 	}
-	return nil
+}
+
+func (app *application) dashboard(w http.ResponseWriter, r *http.Request) {
+	sites, err := app.sites.GetAll()
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			http.NotFound(w, r)
+		} else {
+			app.serverError(w, r, err)
+		}
+		return
+	}
+
+	data := &templateData{
+		Sites: sites,
+	}
+
+	files := []string{
+		"./ui/html/base.tmpl.html",
+		"./ui/html/partials/nav.tmpl.html",
+		"./ui/html/pages/dashboard.tmpl.html",
+	}
+
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+
+	err = ts.ExecuteTemplate(w, "base", data)
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+}
+
+type Contact struct {
+	FirstName string
+	LastName  string
+	Email     string
+}
+
+var contact = Contact{
+	FirstName: "Joe",
+	LastName:  "Hisaishi",
+	Email:     "studioghibli@gmail.com",
+}
+
+func (app *application) contact(w http.ResponseWriter, r *http.Request) {
+	files := []string{
+		"./ui/html/base.tmpl.html",
+		"./ui/html/partials/nav.tmpl.html",
+		"./ui/html/partials/form.tmpl.html",
+		"./ui/html/pages/contact.tmpl.html",
+	}
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		log.Print(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	ts.ExecuteTemplate(w, "base", contact)
+}
+
+func (app *application) viewForm(w http.ResponseWriter, r *http.Request) {
+	files := []string{
+		"./ui/html/partials/form.tmpl.html",
+	}
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		log.Print(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	ts.ExecuteTemplate(w, "contact-view", contact)
+}
+
+func (app *application) editForm(w http.ResponseWriter, r *http.Request) {
+	files := []string{
+		"./ui/html/partials/form.tmpl.html",
+	}
+
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		log.Print(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	ts.ExecuteTemplate(w, "contact-edit", contact)
 }
