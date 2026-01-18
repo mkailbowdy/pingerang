@@ -12,7 +12,7 @@ import (
 	"github.com/chromedp/chromedp"
 )
 
-func urlSelectorPostForm(r *http.Request) (string, string) {
+func getUrlSelectorPostForm(r *http.Request) (string, string) {
 	err := r.ParseForm()
 	if err != nil {
 		log.Fatal(err.Error())

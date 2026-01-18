@@ -35,8 +35,8 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
-	url, selector := urlSelectorPostForm(r)
+func (app *application) createSitePost(w http.ResponseWriter, r *http.Request) {
+	url, selector := getUrlSelectorPostForm(r)
 	urlhash, pagehash := driveHash(url, selector)
 	app.logger.Info("Hashes created.", "urlhash", urlhash)
 	if len(urlhash) == 0 || len(pagehash) == 0 {
@@ -50,7 +50,7 @@ func (app *application) urlCreatePost(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (app *application) urlComparePost(w http.ResponseWriter, r *http.Request) {
+func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request) {
 	url := urlPostForm(r)
 	s, err := app.sites.Get(url)
 	if err != nil {
@@ -59,13 +59,13 @@ func (app *application) urlComparePost(w http.ResponseWriter, r *http.Request) {
 	}
 	urlhash, pagehash := driveHash(s.Url, s.Selector)
 
-	err = app.compare(url, urlhash, pagehash)
+	err = app.compareHashes(url, urlhash, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
 }
 
-func (app *application) urlCompareBackground() {
+func (app *application) getAllAndCompareRoutine() {
 	// Once an hour
 	ticker := time.NewTicker(10 * time.Second)
 	defer ticker.Stop()
@@ -80,13 +80,13 @@ func (app *application) urlCompareBackground() {
 		for i, s := range sites {
 			fmt.Printf("Site %d\n", i+1)
 			urlhash, pagehash := driveHash(s.Url, s.Selector)
-			err = app.compare(s.Url, urlhash, pagehash)
+			err = app.compareHashes(s.Url, urlhash, pagehash)
 		}
 		fmt.Printf("Session complete.\n\n")
 	}
 }
 
-func (app *application) compare(url string, urlhash string, pagehash string) error {
+func (app *application) compareHashes(url string, urlhash string, pagehash string) error {
 	s, err := app.sites.Get(url)
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
@@ -102,9 +102,9 @@ func (app *application) compare(url string, urlhash string, pagehash string) err
 		return nil
 	}
 	fmt.Printf("The page has changed!")
-	
+
 	// Update this snippets Changed column to true (1 in mysql)
-	err = app.sites.UpdateChanged(s.Urlhash)
+	err = app.sites.MarkAsChanged(s.Urlhash)
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
@@ -112,14 +112,9 @@ func (app *application) compare(url string, urlhash string, pagehash string) err
 
 	return nil
 }
-func (app *application) updatePost(w http.ResponseWriter, r *http.Request) {
-	// id, err := strconv.Atoi(r.PathValue("id"))
-	// if err != nil || id < 1 {
-	// 	http.NotFound(w, r)
-	// 	return
-	// }
+func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request) {
 	url := r.PostFormValue("url")
-	fmt.Printf("%s",url)
+	fmt.Printf("%s", url)
 	s, err := app.sites.Get(url)
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {

@@ -13,9 +13,9 @@ func (app *application) routes() *http.ServeMux {
 	mux.HandleFunc("GET /contact/1", app.contact)
 	mux.HandleFunc("GET /contact/1/view", app.viewForm)
 	mux.HandleFunc("GET /contact/1/edit", app.editForm)
-	mux.HandleFunc("POST /url", app.urlCreatePost)
-	mux.HandleFunc("POST /url/compare", app.urlComparePost)
-	mux.HandleFunc("POST /url/{id}", app.updatePost)
+	mux.HandleFunc("POST /url", app.createSitePost)
+	mux.HandleFunc("POST /url/compare", app.getAndComparePost)
+	mux.HandleFunc("POST /url/{id}", app.updateHashesPost)
 
 	return mux
 }

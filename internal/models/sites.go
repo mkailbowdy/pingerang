@@ -51,14 +51,14 @@ func (m *SiteModel) Get(url string) (Site, error) {
 	return s, err
 }
 
-func (m *SiteModel) UpdateChanged(urlhash string) error{
+func (m *SiteModel) MarkAsChanged(urlhash string) error{
 	stmt := `UPDATE sites SET changed = ? WHERE urlhash = ?`
 	_, err := m.DB.Exec(stmt, 1, urlhash)
 	if err != nil {
 		fmt.Printf("%s\n", err.Error())
 		return err
 	}
-	fmt.Println("The status of the site has been successfully updated.")
+	fmt.Println("Site is now marked as Changed.")
 	return nil
 }
 
@@ -69,7 +69,7 @@ func (m *SiteModel) Update(urlhash, pagehash string) error {
 		fmt.Printf("%s\n", err.Error())
 		return err
 	}
-	fmt.Println("The hash has been successfully updated.")
+	fmt.Println("Site is now marked as No Changes and pagehash has been updated.")
 	return nil
 }
 
