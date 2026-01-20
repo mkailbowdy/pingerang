@@ -57,9 +57,9 @@ func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request
 		app.logger.Error(err.Error())
 		return
 	}
-	urlhash, pagehash := driveHash(s.Url, s.Selector)
+	_, pagehash := driveHash(s.Url, s.Selector)
 
-	err = app.compareHashes(url, urlhash, pagehash)
+	err = app.compareHashes(url, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
@@ -79,14 +79,14 @@ func (app *application) getAllAndCompareRoutine() {
 		fmt.Printf("Session started.\n")
 		for i, s := range sites {
 			fmt.Printf("Site %d\n", i+1)
-			urlhash, pagehash := driveHash(s.Url, s.Selector)
-			err = app.compareHashes(s.Url, urlhash, pagehash)
+			_, pagehash := driveHash(s.Url, s.Selector)
+			err = app.compareHashes(s.Url, pagehash)
 		}
 		fmt.Printf("Session complete.\n\n")
 	}
 }
 
-func (app *application) compareHashes(url string, urlhash string, pagehash string) error {
+func (app *application) compareHashes(url string, pagehash string) error {
 	s, err := app.sites.Get(url)
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
