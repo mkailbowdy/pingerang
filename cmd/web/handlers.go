@@ -13,26 +13,36 @@ import (
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Server", "Go")
-
-	// Include the navigation partial in the template files.
-	files := []string{
-		"./ui/html/base.tmpl.html",
-		"./ui/html/partials/nav.tmpl.html",
-		"./ui/html/partials/form.tmpl.html",
-		"./ui/html/pages/home.tmpl.html",
+	data := &templateData{
+		Site: models.Site{
+			ID:       88,
+			Url:      "ssdfasdf",
+			Created:  time.Now(),
+			Urlhash:  "asadf",
+			Pagehash: "asdf",
+			Selector: "se",
+			Changed:  true,
+		},
 	}
+	app.render(w, r, http.StatusOK, "home.tmpl.html", *data)
+}
 
-	ts, err := template.ParseFiles(files...)
+func (app *application) dashboard(w http.ResponseWriter, r *http.Request) {
+	sites, err := app.sites.GetAll()
 	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		if errors.Is(err, models.ErrNoRecord) {
+			http.NotFound(w, r)
+		} else {
+			app.serverError(w, r, err)
+		}
 		return
 	}
-	err = ts.ExecuteTemplate(w, "base", contact)
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+
+	data := &templateData{
+		Sites: sites,
 	}
+
+	app.render(w, r, http.StatusOK, "dashboard.tmpl.html", *data)
 }
 
 func (app *application) createSitePost(w http.ResponseWriter, r *http.Request) {
@@ -128,39 +138,6 @@ func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request)
 	err = app.sites.Update(urlhash, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
-	}
-}
-
-func (app *application) dashboard(w http.ResponseWriter, r *http.Request) {
-	sites, err := app.sites.GetAll()
-	if err != nil {
-		if errors.Is(err, models.ErrNoRecord) {
-			http.NotFound(w, r)
-		} else {
-			app.serverError(w, r, err)
-		}
-		return
-	}
-
-	data := &templateData{
-		Sites: sites,
-	}
-
-	files := []string{
-		"./ui/html/base.tmpl.html",
-		"./ui/html/partials/nav.tmpl.html",
-		"./ui/html/pages/dashboard.tmpl.html",
-	}
-
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		app.serverError(w, r, err)
-		return
-	}
-
-	err = ts.ExecuteTemplate(w, "base", data)
-	if err != nil {
-		app.serverError(w, r, err)
 	}
 }
 

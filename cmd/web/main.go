@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"flag"
 	"fmt"
+	"html/template"
 	"log/slog"
 	"net/http"
 	"os"
@@ -13,8 +14,9 @@ import (
 )
 
 type application struct {
-	sites  *models.SiteModel
-	logger *slog.Logger
+	sites         *models.SiteModel
+	logger        *slog.Logger
+	templateCache map[string]*template.Template
 }
 
 func main() {
@@ -34,9 +36,15 @@ func main() {
 	}
 	defer db.Close()
 
+	templateCache, err := newTemplateCache()
+	if err != nil{
+		logger.Error(err.Error())
+		os.Exit(1)
+	} 
 	app := &application{
 		sites:  &models.SiteModel{DB: db},
 		logger: logger,
+		templateCache: templateCache,
 	}
 
 	//go app.urlCompareBackground()
