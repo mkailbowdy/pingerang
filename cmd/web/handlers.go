@@ -13,18 +13,17 @@ import (
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Server", "Go")
-	data := &templateData{
-		Site: models.Site{
-			ID:       88,
-			Url:      "ssdfasdf",
-			Created:  time.Now(),
-			Urlhash:  "asadf",
-			Pagehash: "asdf",
-			Selector: "se",
-			Changed:  true,
-		},
+	data := app.newTemplateData(r)
+	data.Site = models.Site{
+		ID:       88,
+		Url:      "ssdfasdf",
+		Created:  time.Now(),
+		Urlhash:  "asadf",
+		Pagehash: "asdf",
+		Selector: "se",
+		Changed:  true,
 	}
-	app.render(w, r, http.StatusOK, "home.tmpl.html", *data)
+	app.render(w, r, http.StatusOK, "home.tmpl.html", data)
 }
 
 func (app *application) dashboard(w http.ResponseWriter, r *http.Request) {

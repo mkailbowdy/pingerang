@@ -1,3 +1,6 @@
 @import "tailwindcss";
-/* By default, Tailwind v4 starts looking for HTML files in the folder where you run the command.  */
+/* @theme default; */
+
+/* Try a broader source to test if discovery is the issue */
+@source "./**/*.html"; 
 @source "../../**/*.html";

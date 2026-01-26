@@ -1,7 +1,7 @@
 {{define "title"}}Home{{end}}
 
 {{define "main"}}
-    <h2>Your URLs</h2>
+    <h2 class="text-4xl text-indigo-300">Your URLs</h2>
 
 {{range .Sites}}
 <ul role="list" class="divide-y divide-gray-100 dark:divide-white/5">
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-      <p class="text-sm/6 text-gray-900 dark:text-white">Co-Founder / CEO</p>
+      <p class="text-sm/6 text-gray-900 dark:text-white">{{ .Created | humanDate}}</p>
       <p class="mt-1 text-xs/5 text-gray-500 dark:text-gray-400">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
     </div>
   </li>
