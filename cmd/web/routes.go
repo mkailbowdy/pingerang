@@ -4,9 +4,11 @@ import (
 	"net/http"
 )
 
-func (app *application) routes() *http.ServeMux {
+func (app *application) routes() http.Handler {
 	mux := http.NewServeMux()
+
 	fileServer := http.FileServer(http.Dir("./ui/static/"))
+
 	mux.Handle("GET /static/", http.StripPrefix("/static", fileServer))
 	mux.HandleFunc("GET /{$}", app.home)
 	mux.HandleFunc("GET /dashboard", app.dashboard)
@@ -17,5 +19,5 @@ func (app *application) routes() *http.ServeMux {
 	mux.HandleFunc("POST /url/compare", app.getAndComparePost)
 	mux.HandleFunc("POST /url/{id}", app.updateHashesPost)
 
-	return mux
+	return commonHeaders(mux)
 }

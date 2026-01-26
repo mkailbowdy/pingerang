@@ -2,5 +2,4 @@
 /* @theme default; */
 
 /* Try a broader source to test if discovery is the issue */
-@source "./**/*.html"; 
 @source "../../**/*.html";

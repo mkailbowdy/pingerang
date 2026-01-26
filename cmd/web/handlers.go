@@ -12,7 +12,6 @@ import (
 )
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	w.Header().Add("Server", "Go")
 	data := app.newTemplateData(r)
 	data.Site = models.Site{
 		ID:       88,
