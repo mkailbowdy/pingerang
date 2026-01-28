@@ -2,6 +2,8 @@ package main
 
 import (
 	"net/http"
+
+	"github.com/justinas/alice"
 )
 
 func (app *application) routes() http.Handler {
@@ -19,5 +21,8 @@ func (app *application) routes() http.Handler {
 	mux.HandleFunc("POST /url/compare", app.getAndComparePost)
 	mux.HandleFunc("POST /url/{id}", app.updateHashesPost)
 
-	return app.recoverPanic(app.logRequest(commonHeaders(mux)))
+	// This is a standard chain of middleware used for every request the http server receives.
+	standard := alice.New(app.recoverPanic, app.logRequest, commonHeaders)
+
+	return standard.Then(mux)
 }
