@@ -19,5 +19,5 @@ func (app *application) routes() http.Handler {
 	mux.HandleFunc("POST /url/compare", app.getAndComparePost)
 	mux.HandleFunc("POST /url/{id}", app.updateHashesPost)
 
-	return commonHeaders(mux)
+	return app.recoverPanic(app.logRequest(commonHeaders(mux)))
 }
