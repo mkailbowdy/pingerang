@@ -11,6 +11,7 @@ import (
 
 type templateData struct {
 	CurrentYear int
+	Page        string
 	Site        models.Site
 	Sites       []models.Site
 }
@@ -25,7 +26,7 @@ func newTemplateCache() (map[string]*template.Template, error) {
 	for _, page := range pages {
 		name := filepath.Base(page)
 
-		// Register custo template functions.
+		// Register custom template functions.
 		ts, err := template.New(name).Funcs(functions).ParseFiles("./ui/html/base.tmpl.html")
 		if err != nil {
 			return nil, err
@@ -46,6 +47,7 @@ func newTemplateCache() (map[string]*template.Template, error) {
 func (app *application) newTemplateData(r *http.Request) templateData {
 	return templateData{
 		CurrentYear: time.Now().Year(),
+		Page: r.RequestURI,
 	}
 }
 

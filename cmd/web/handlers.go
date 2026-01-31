@@ -36,14 +36,18 @@ func (app *application) dashboard(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := &templateData{
-		Sites: sites,
-	}
-
-	app.render(w, r, http.StatusOK, "dashboard.tmpl.html", *data)
+	data := app.newTemplateData(r)
+	data.Sites = sites
+	app.render(w, r, http.StatusOK, "dashboard.tmpl.html", data)
 }
 
-func (app *application) createSitePost(w http.ResponseWriter, r *http.Request) {
+func(app *application) createUrl(w http.ResponseWriter, r *http.Request) {
+	app.logger.Info("Rendering create URL page.")
+	data := app.newTemplateData(r)
+	app.render(w, r, http.StatusOK, "create.tmpl.html", data)
+}
+
+func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 	url, selector := getUrlSelectorPostForm(r)
 	urlhash, pagehash := driveHash(url, selector)
 	app.logger.Info("Hashes created.", "urlhash", urlhash)
