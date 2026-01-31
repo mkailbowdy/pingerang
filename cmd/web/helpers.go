@@ -13,24 +13,18 @@ import (
 	"github.com/chromedp/chromedp"
 )
 
-func getUrlSelectorPostForm(r *http.Request) (string, string) {
+func (app *application) getUrlSelectorPostForm(w http.ResponseWriter, r *http.Request) (string, string) {
 	err := r.ParseForm()
 	if err != nil {
-		log.Fatal(err.Error())
+		app.clientError(w, http.StatusBadRequest)
+		return "", ""
 	}
 	url := r.PostForm.Get("url")
-	fmt.Printf("%s\n", url)
+	fmt.Printf("%s", url)
 	selector := r.PostForm.Get("selector")
+	fmt.Printf("%s", selector)
 
 	return url, selector
-}
-func urlPostForm(r *http.Request) string {
-	err := r.ParseForm()
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-	url := r.PostForm.Get("url")
-	return url
 }
 
 func driveHash(url, selector string) (string, string) {
@@ -115,7 +109,7 @@ func (app *application) clientError(w http.ResponseWriter, status int) {
 	http.Error(w, http.StatusText(status), status)
 }
 
-func (app *application) render(w http.ResponseWriter, r *http.Request, status int, page string, data templateData){
+func (app *application) render(w http.ResponseWriter, r *http.Request, status int, page string, data templateData) {
 	ts, ok := app.templateCache[page]
 	if !ok {
 		err := fmt.Errorf("The template %s does not exist", page)
@@ -123,10 +117,9 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 		return
 	}
 
-	
 	buf := new(bytes.Buffer)
 	err := ts.ExecuteTemplate(buf, "base", data)
-	if err != nil{
+	if err != nil {
 		app.serverError(w, r, err)
 		return
 	}

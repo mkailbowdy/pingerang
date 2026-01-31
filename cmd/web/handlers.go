@@ -41,14 +41,14 @@ func (app *application) dashboard(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, http.StatusOK, "dashboard.tmpl.html", data)
 }
 
-func(app *application) createUrl(w http.ResponseWriter, r *http.Request) {
+func (app *application) createUrl(w http.ResponseWriter, r *http.Request) {
 	app.logger.Info("Rendering create URL page.")
 	data := app.newTemplateData(r)
 	app.render(w, r, http.StatusOK, "create.tmpl.html", data)
 }
 
 func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
-	url, selector := getUrlSelectorPostForm(r)
+	url, selector := app.getUrlSelectorPostForm(w, r)
 	urlhash, pagehash := driveHash(url, selector)
 	app.logger.Info("Hashes created.", "urlhash", urlhash)
 	if len(urlhash) == 0 || len(pagehash) == 0 {
@@ -60,11 +60,14 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 		app.logger.Error(err.Error())
 		return
 	}
+
+	http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
 }
 
 func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request) {
-	url := urlPostForm(r)
+	url, _ := app.getUrlSelectorPostForm(w, r)
 	s, err := app.sites.Get(url)
+	fmt.Printf("Checking site: %s\n", url)
 	if err != nil {
 		app.logger.Error(err.Error())
 		return
