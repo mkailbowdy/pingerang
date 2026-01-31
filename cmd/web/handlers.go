@@ -3,8 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"html/template"
-	"log"
 	"net/http"
 	"time"
 
@@ -13,15 +11,6 @@ import (
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
-	data.Site = models.Site{
-		ID:       88,
-		Url:      "ssdfasdf",
-		Created:  time.Now(),
-		Urlhash:  "asadf",
-		Pagehash: "asdf",
-		Selector: "se",
-		Changed:  true,
-	}
 	app.render(w, r, http.StatusOK, "home.tmpl.html", data)
 }
 
@@ -67,7 +56,6 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request) {
 	url, _ := app.getUrlSelectorPostForm(w, r)
 	s, err := app.sites.Get(url)
-	fmt.Printf("Checking site: %s\n", url)
 	if err != nil {
 		app.logger.Error(err.Error())
 		return
@@ -91,13 +79,10 @@ func (app *application) getAllAndCompareRoutine() {
 			app.logger.Error(err.Error())
 			return
 		}
-		fmt.Printf("Session started.\n")
-		for i, s := range sites {
-			fmt.Printf("Site %d\n", i+1)
+		for _, s := range sites {
 			_, pagehash := driveHash(s.Url, s.Selector)
 			err = app.compareHashes(s.Url, pagehash)
 		}
-		fmt.Printf("Session complete.\n\n")
 	}
 }
 
@@ -123,13 +108,17 @@ func (app *application) compareHashes(url string, pagehash string) error {
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
-	sendUpdateMail(s.Url)
+	// sendUpdateMail(s.Url)
 
 	return nil
 }
 func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request) {
-	url := r.PostFormValue("url")
-	fmt.Printf("%s", url)
+	err := r.ParseForm()
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+	url := r.PostForm.Get("url")
 	s, err := app.sites.Get(url)
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
@@ -144,60 +133,4 @@ func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request)
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
-}
-
-type Contact struct {
-	FirstName string
-	LastName  string
-	Email     string
-}
-
-var contact = Contact{
-	FirstName: "Joe",
-	LastName:  "Hisaishi",
-	Email:     "studioghibli@gmail.com",
-}
-
-func (app *application) contact(w http.ResponseWriter, r *http.Request) {
-	files := []string{
-		"./ui/html/base.tmpl.html",
-		"./ui/html/partials/nav.tmpl.html",
-		"./ui/html/partials/form.tmpl.html",
-		"./ui/html/pages/contact.tmpl.html",
-	}
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-	ts.ExecuteTemplate(w, "base", contact)
-}
-
-func (app *application) viewForm(w http.ResponseWriter, r *http.Request) {
-	files := []string{
-		"./ui/html/partials/form.tmpl.html",
-	}
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-	ts.ExecuteTemplate(w, "contact-view", contact)
-}
-
-func (app *application) editForm(w http.ResponseWriter, r *http.Request) {
-	files := []string{
-		"./ui/html/partials/form.tmpl.html",
-	}
-
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-
-	ts.ExecuteTemplate(w, "contact-edit", contact)
 }

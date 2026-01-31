@@ -3,7 +3,6 @@ package main
 import (
 	"database/sql"
 	"flag"
-	"fmt"
 	"html/template"
 	"log/slog"
 	"net/http"
@@ -31,7 +30,6 @@ func main() {
 
 	db, err := openDB(*dsn)
 	if err != nil {
-		fmt.Printf("error opening database pool: %s", err.Error())
 		os.Exit(1)
 	}
 	defer db.Close()

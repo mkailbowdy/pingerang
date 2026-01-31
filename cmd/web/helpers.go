@@ -20,10 +20,7 @@ func (app *application) getUrlSelectorPostForm(w http.ResponseWriter, r *http.Re
 		return "", ""
 	}
 	url := r.PostForm.Get("url")
-	fmt.Printf("%s", url)
 	selector := r.PostForm.Get("selector")
-	fmt.Printf("%s", selector)
-
 	return url, selector
 }
 
@@ -84,7 +81,6 @@ func sendUpdateMail(url string) {
 		url)
 	err := smtp.SendMail("smtp.gmail.com:587", auth, "myhkail.mendoza@gmail.com", to, msg)
 	if err != nil {
-		fmt.Printf("Error while trying to send email.")
 		log.Fatal(err)
 	}
 }

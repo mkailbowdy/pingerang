@@ -55,7 +55,6 @@ func (m *SiteModel) MarkAsChanged(urlhash string) error{
 	stmt := `UPDATE sites SET changed = ? WHERE urlhash = ?`
 	_, err := m.DB.Exec(stmt, 1, urlhash)
 	if err != nil {
-		fmt.Printf("%s\n", err.Error())
 		return err
 	}
 	fmt.Println("Site is now marked as Changed.")
@@ -66,7 +65,6 @@ func (m *SiteModel) Update(urlhash, pagehash string) error {
 	stmt := `UPDATE sites SET pagehash = ?, changed = ? WHERE urlhash = ?`
 	_, err := m.DB.Exec(stmt, pagehash, 0, urlhash)
 	if err != nil {
-		fmt.Printf("%s\n", err.Error())
 		return err
 	}
 	fmt.Println("Site is now marked as No Changes and pagehash has been updated.")
