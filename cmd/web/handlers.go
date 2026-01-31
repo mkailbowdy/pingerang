@@ -113,6 +113,8 @@ func (app *application) compareHashes(url string, pagehash string) error {
 	return nil
 }
 func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	fmt.Printf("Updating hashes for ID: %s\n", id)
 	err := r.ParseForm()
 	if err != nil {
 		app.clientError(w, http.StatusBadRequest)
@@ -133,4 +135,5 @@ func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request)
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
+	fmt.Fprintf(w, `<p class="mt-1 truncate text-xs/5 text-gray-500 dark:text-gray-400">No changes.</p>`)
 }
