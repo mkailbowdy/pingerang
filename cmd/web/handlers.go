@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"html/template"
 	"net/http"
 	"time"
 
@@ -65,6 +66,20 @@ func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request
 	err = app.compareHashes(url, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
+	}
+	files := []string{
+		"ui/html/partials/row.tmpl.html",
+	}
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+
+	err = ts.ExecuteTemplate(w, "change", nil)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
 	}
 }
 
@@ -135,5 +150,19 @@ func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request)
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
-	fmt.Fprintf(w, `<p class="mt-1 truncate text-xs/5 text-gray-500 dark:text-gray-400">No changes.</p>`)
+
+	files := []string{
+		"ui/html/partials/row.tmpl.html",
+	}
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+
+	err = ts.ExecuteTemplate(w, "nochange", nil)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
 }
