@@ -67,20 +67,6 @@ func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
-	files := []string{
-		"ui/html/partials/row.tmpl.html",
-	}
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		app.serverError(w, r, err)
-		return
-	}
-
-	err = ts.ExecuteTemplate(w, "change", nil)
-	if err != nil {
-		app.serverError(w, r, err)
-		return
-	}
 }
 
 func (app *application) getAllAndCompareRoutine() {
