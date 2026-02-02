@@ -45,7 +45,7 @@ func main() {
 		templateCache: templateCache,
 	}
 
-	//go app.urlCompareBackground()
+	// go app.getAllAndCompareRoutine()
 
 	logger.Info("starting server", "addr", *addr)
 	err = http.ListenAndServe(*addr, app.routes())

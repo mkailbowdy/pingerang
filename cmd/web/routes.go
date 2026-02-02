@@ -17,6 +17,7 @@ func (app *application) routes() http.Handler {
 	mux.HandleFunc("GET /url/create", app.createUrl)
 	mux.HandleFunc("POST /url/create", app.createUrlPost)
 	mux.HandleFunc("POST /url/compare", app.getAndComparePost)
+	mux.HandleFunc("POST /url/{id}", app.showButton)
 	mux.HandleFunc("PATCH /url/{id}", app.updateHashesPost)
 
 	// This is a standard chain of middleware used for every request the http server receives.

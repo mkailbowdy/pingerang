@@ -146,7 +146,42 @@ func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	err = ts.ExecuteTemplate(w, "nochange", nil)
+	err = ts.ExecuteTemplate(w, "nochange", s)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+}
+
+func (app *application) showButton(w http.ResponseWriter, r *http.Request) {
+
+	// look up the Site in the database
+	err := r.ParseForm()
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+	url := r.PostForm.Get("url")
+	fmt.Printf("The URL is %s\n", url)
+	s, err := app.sites.Get(url)
+	fmt.Printf("Site values is: %v\n", s)
+	files := []string{
+		"ui/html/partials/row.tmpl.html",
+	}
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+	if s.Changed == false {
+		err = ts.ExecuteTemplate(w, "nochange", s)
+		if err != nil {
+			app.serverError(w, r, err)
+			return
+		}
+		return
+	}
+	err = ts.ExecuteTemplate(w, "change", s)
 	if err != nil {
 		app.serverError(w, r, err)
 		return
