@@ -1,0 +1,345 @@
+{"time":"2026-02-04T10:25:48.525723198Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T10:26:06.065105308Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49260","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T10:26:06.332295938Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49260","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T10:26:06.926850787Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49260","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T10:26:08.619109979Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49260","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T10:26:08.619235143Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T10:26:09.709107564Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49260","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T10:27:26.997754465Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49260","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-04T10:28:10.881343322Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49260","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T10:28:10.882359519Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41080","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T10:30:11.569385152Z","level":"INFO","msg":"request received","ip":"127.0.0.1:40284","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T10:30:11.628249256Z","level":"INFO","msg":"request received","ip":"127.0.0.1:40294","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T10:32:13.767105653Z","level":"INFO","msg":"request received","ip":"127.0.0.1:39260","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T10:32:13.767122358Z","level":"INFO","msg":"request received","ip":"127.0.0.1:39274","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T10:34:16.186243178Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60108","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T10:34:16.186577679Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60102","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T10:36:17.790912326Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59854","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T10:36:17.855368759Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59860","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T10:38:19.803048658Z","level":"INFO","msg":"request received","ip":"127.0.0.1:45964","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T10:38:19.875153864Z","level":"INFO","msg":"request received","ip":"127.0.0.1:45966","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T10:40:26.148436218Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T10:40:28.830851076Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35072","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T10:40:29.072404721Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35072","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T10:40:30.250282012Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35072","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T10:40:30.250461729Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T10:40:32.412244991Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35072","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T10:40:35.250577082Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35072","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T10:40:35.250688811Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T11:08:09.257535086Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T11:08:19.793644674Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59372","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T11:08:19.793738853Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T11:08:19.990298885Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59372","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T11:08:24.666670695Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59372","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T11:09:19.694282836Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59372","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T11:09:19.694470874Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T11:09:27.553761426Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59372","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T11:09:31.141219734Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59372","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T11:09:31.141330067Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T11:09:39.99516113Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59372","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T11:09:43.964275539Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59372","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T11:09:43.964370623Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T11:10:34.713223465Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59372","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T11:10:37.790378745Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59372","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T11:10:37.790497001Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T11:12:02.156231103Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T11:13:33.523759607Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54002","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T11:13:35.458255719Z","level":"INFO","msg":"Hashes created.","urlhash":"ac6bb669e40e44a8d9f8f0c94dfc63734049dcf6219aac77f02edf94b9162c09"}
+{"time":"2026-02-04T11:13:35.706166781Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54002","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T11:15:37.268815436Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56144","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:15:37.269169924Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56162","proto":"HTTP/1.1","method":"POST","uri":"/url/6"}
+{"time":"2026-02-04T11:15:37.269200843Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56154","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:17:39.107462392Z","level":"INFO","msg":"request received","ip":"127.0.0.1:58032","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:17:39.10783738Z","level":"INFO","msg":"request received","ip":"127.0.0.1:58034","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:19:41.032257073Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34628","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:19:41.118854926Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34632","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:20:33.270118887Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34632","proto":"HTTP/1.1","method":"PATCH","uri":"/url/6"}
+{"time":"2026-02-04T11:21:42.914200996Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34632","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:21:42.915069742Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:22:23.363257862Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-04T11:22:26.103823796Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T11:22:28.788259594Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T11:22:35.739942925Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/6"}
+{"time":"2026-02-04T11:23:44.779903496Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:23:44.849928315Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:24:29.839787835Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:24:29.840308178Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:25:47.156923764Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:25:47.157239707Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:26:31.703602869Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:26:31.703973222Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:27:49.028334121Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:27:49.028709666Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:28:34.091255207Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:28:34.09160579Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:29:50.767774356Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:29:50.768154927Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:30:35.77986427Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:30:35.779864332Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:31:52.847752076Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:31:52.848070571Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:32:38.164195197Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:32:38.164218844Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:33:54.775802646Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:33:54.779417673Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:34:39.77711683Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:34:39.780994498Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:35:56.806628011Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:35:56.806931978Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:36:41.812463099Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:36:41.852092941Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:37:59.415252292Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:37:59.415257596Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:38:44.474051031Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:38:44.474374742Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:40:00.7990381Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:40:00.79903808Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:40:45.808377419Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:40:45.809473738Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:42:02.787014387Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:42:02.787013624Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:42:47.769359546Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:42:47.775866622Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:44:04.771945623Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54146","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:44:04.771945602Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50544","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:44:49.847277801Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35126","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:44:49.847643533Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35114","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:46:06.786027645Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35114","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:46:06.786027689Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35126","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:46:51.828114249Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35126","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:46:51.828114213Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35114","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:48:08.777432553Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35126","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:48:08.777814923Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35114","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:48:53.77084593Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35126","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:48:53.771177054Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35114","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-04T11:50:10.776679033Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35126","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:50:26.545429652Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T11:50:55.783975469Z","level":"INFO","msg":"request received","ip":"127.0.0.1:44538","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-04T11:51:16.939128171Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:00:40.11873391Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:00:48.482516858Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:00:48.864294786Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:01:16.644919116Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"PATCH","uri":"/url/1"}
+{"time":"2026-02-04T12:01:26.370301365Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:01:28.927712057Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"PATCH","uri":"/url/1"}
+{"time":"2026-02-04T12:01:35.359653396Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:01:36.643401357Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:02:12.451781781Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:02:27.728419202Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"PATCH","uri":"/url/6"}
+{"time":"2026-02-04T12:03:04.316509519Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:03:13.389504727Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:03:14.383482767Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"PATCH","uri":"/url/6"}
+{"time":"2026-02-04T12:03:48.201698593Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35004","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:03:48.201807736Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:10:05.298244336Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:10:08.227243151Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34686","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:10:10.181098137Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34686","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:10:10.181300484Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:10:10.182506488Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:10:12.740914694Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34686","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:10:14.280858176Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34686","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:10:14.281017651Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:10:14.28128921Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:10:29.125720662Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34686","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:10:29.125823821Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:10:29.126025125Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:11:20.751021062Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:11:21.87077442Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34372","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:11:21.870952598Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:11:21.871875682Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:06.557029243Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:15:07.180752027Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46536","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:07.18086203Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:15:07.182126393Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:07.795715869Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46536","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:07.795827605Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:15:07.796073897Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:08.425805283Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46536","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:08.425990006Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:15:08.426264837Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:10.015461634Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46536","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:10.015608821Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:15:10.015868632Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:55.109484085Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:15:58.369182637Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41948","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:58.369297568Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:15:58.370292196Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:59.069779515Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41948","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:59.069946498Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:15:59.07023594Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:59.800971298Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41948","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:15:59.801083617Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:15:59.801321146Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:16:02.377584189Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41948","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:16:02.377755532Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:16:02.377964529Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:16:38.818216421Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41948","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:16:38.818326993Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:16:38.81858756Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:17:07.137154277Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41948","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:17:07.137245338Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:17:07.137400825Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:17:17.611194035Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:17:17.879823409Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57096","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:17:17.879949594Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:17:18.049235931Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57096","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:17:18.984443554Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57096","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:17:18.984590621Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:17:19.288036507Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57096","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:18:09.965523202Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57096","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:18:09.965672682Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:18:10.197334225Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57096","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:21:17.30962789Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46058","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:21:17.309789205Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:21:17.601475246Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46058","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:21:41.362110956Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:21:43.329099748Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54934","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:21:43.329277448Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:21:45.433962526Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54934","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:21:45.434077424Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:22:06.915891395Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:22:07.46136304Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36680","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:22:07.461485968Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:22:07.462468578Z","level":"ERROR","msg":"template: create.tmpl.html:17:51: executing \"main\" at <.Form.url>: nil pointer evaluating interface {}.url","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:22:37.688798828Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:22:37.754303184Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36594","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:22:37.754402546Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:22:37.755430629Z","level":"ERROR","msg":"template: create.tmpl.html:17:51: executing \"main\" at <.Form.FieldErrors>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:22:38.555679442Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36594","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:22:38.55578484Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:22:38.555989126Z","level":"ERROR","msg":"template: create.tmpl.html:17:51: executing \"main\" at <.Form.FieldErrors>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:22:39.19568295Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36594","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:22:39.195886676Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:22:39.196179313Z","level":"ERROR","msg":"template: create.tmpl.html:17:51: executing \"main\" at <.Form.FieldErrors>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:22:39.74240612Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36594","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:22:39.742503581Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:22:39.742794593Z","level":"ERROR","msg":"template: create.tmpl.html:17:51: executing \"main\" at <.Form.FieldErrors>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:25:21.390710948Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:25:22.225381848Z","level":"INFO","msg":"request received","ip":"127.0.0.1:52028","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:25:22.225488706Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:25:22.509283264Z","level":"INFO","msg":"request received","ip":"127.0.0.1:52028","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:25:24.555343755Z","level":"INFO","msg":"request received","ip":"127.0.0.1:52028","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:25:24.555475948Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:25:29.826949241Z","level":"INFO","msg":"request received","ip":"127.0.0.1:52028","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:25:50.002449389Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:25:52.39178471Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59894","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:25:53.134976991Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59894","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:25:53.1351464Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:25:55.464135056Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59894","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:26:24.641118368Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:26:26.92494685Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35498","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:26:28.043211458Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35498","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:26:28.04332829Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:26:28.044483637Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:26:40.038294952Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35498","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:26:40.038435825Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:26:40.038667353Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors.url>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:26:57.965940788Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:26:59.208097628Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41348","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:26:59.208209552Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:26:59.209495514Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:27:02.854523661Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41348","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:27:02.854768774Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:27:02.855041831Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:27:05.28910652Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41348","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-04T12:27:05.406118683Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41348","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:27:06.953868131Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41348","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:27:06.953974775Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:27:06.954182952Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:27:45.470080345Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:27:45.872794645Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47372","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:27:45.872885934Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:27:45.873013223Z","level":"ERROR","msg":"runtime error: invalid memory address or nil pointer dereference","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:27:47.964020981Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47388","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:27:47.964125465Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:27:47.964247117Z","level":"ERROR","msg":"runtime error: invalid memory address or nil pointer dereference","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:27:52.003446474Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37180","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-04T12:27:53.31838535Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37180","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:27:54.050760934Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37180","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:27:54.050880076Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:27:54.050979656Z","level":"ERROR","msg":"runtime error: invalid memory address or nil pointer dereference","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:28:03.316792102Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:28:04.804697698Z","level":"INFO","msg":"request received","ip":"127.0.0.1:40600","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:28:04.804811391Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:28:25.519805795Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:28:28.415685494Z","level":"INFO","msg":"request received","ip":"127.0.0.1:52130","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:28:28.415783012Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:28:28.41670747Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:28:29.439521555Z","level":"INFO","msg":"request received","ip":"127.0.0.1:52130","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:28:29.439620533Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:28:29.439739587Z","level":"ERROR","msg":"template: create.tmpl.html:16:28: executing \"main\" at <.Form.FieldErrors>: nil pointer evaluating interface {}.FieldErrors","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:29:43.109661815Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:29:43.308036398Z","level":"INFO","msg":"request received","ip":"127.0.0.1:39190","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:29:43.308137317Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:29:43.309388012Z","level":"ERROR","msg":"template: create.tmpl.html:22:111: executing \"main\" at <.Form.url>: nil pointer evaluating interface {}.url","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:29:44.366410622Z","level":"INFO","msg":"request received","ip":"127.0.0.1:39190","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:29:44.366521985Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:29:44.36677136Z","level":"ERROR","msg":"template: create.tmpl.html:22:111: executing \"main\" at <.Form.url>: nil pointer evaluating interface {}.url","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:29:44.932930582Z","level":"INFO","msg":"request received","ip":"127.0.0.1:39190","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:29:44.933050652Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:29:44.933256752Z","level":"ERROR","msg":"template: create.tmpl.html:22:111: executing \"main\" at <.Form.url>: nil pointer evaluating interface {}.url","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:30:00.497965744Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:30:02.577355491Z","level":"INFO","msg":"request received","ip":"127.0.0.1:42806","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:30:02.577448564Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:30:02.76507054Z","level":"INFO","msg":"request received","ip":"127.0.0.1:42806","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:33:10.979573383Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:33:12.416066582Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41126","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:33:12.416174741Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:33:12.417466599Z","level":"ERROR","msg":"template: create.tmpl.html:22:41: executing \"main\" at <.Form.Url>: nil pointer evaluating interface {}.Url","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:33:13.359043754Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41126","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:33:13.359147002Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:33:13.359352093Z","level":"ERROR","msg":"template: create.tmpl.html:22:41: executing \"main\" at <.Form.Url>: nil pointer evaluating interface {}.Url","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:34:00.884176325Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:34:02.611599656Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43948","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:34:02.611696683Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:34:02.612646993Z","level":"ERROR","msg":"template: create.tmpl.html:22:41: executing \"main\" at <.Form.Selector>: nil pointer evaluating interface {}.Selector","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:34:28.312505336Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43948","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-04T12:34:28.672285126Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43948","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:34:29.852656944Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43948","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:34:29.852791634Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:34:29.853028831Z","level":"ERROR","msg":"template: create.tmpl.html:22:41: executing \"main\" at <.Form.Selector>: nil pointer evaluating interface {}.Selector","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:35:31.439117834Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:35:31.68768949Z","level":"INFO","msg":"request received","ip":"127.0.0.1:52516","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:35:31.68788998Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:35:31.688905563Z","level":"ERROR","msg":"html/template:base: \"`\" in unquoted attr: \"`\"","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:35:32.824762843Z","level":"INFO","msg":"request received","ip":"127.0.0.1:52516","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:35:32.824867481Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:35:32.824918781Z","level":"ERROR","msg":"html/template:base: \"`\" in unquoted attr: \"`\"","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:36:16.945953411Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:36:17.13951774Z","level":"INFO","msg":"request received","ip":"127.0.0.1:51898","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:36:17.139665815Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:36:17.140601533Z","level":"ERROR","msg":"template: create.tmpl.html:22:41: executing \"main\" at <.Form.Selector>: nil pointer evaluating interface {}.Selector","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:39:58.695376461Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:40:00.288405145Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47190","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:40:00.679530095Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47190","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:40:02.138171608Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47190","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:40:02.138274459Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:40:04.467207675Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47190","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:40:29.115068582Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:40:35.207234845Z","level":"INFO","msg":"request received","ip":"127.0.0.1:53814","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:40:35.877833042Z","level":"INFO","msg":"request received","ip":"127.0.0.1:53814","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:40:35.877949193Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:40:41.568609223Z","level":"INFO","msg":"request received","ip":"127.0.0.1:53814","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:40:41.56916094Z","level":"ERROR","msg":"template: create.tmpl.html:22:41: executing \"main\" at <.Form.url>: can't evaluate field url in type interface {}","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:41:23.507516638Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:41:25.121841789Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37856","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:43:46.681175948Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:43:50.461612173Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34632","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:43:50.463003539Z","level":"ERROR","msg":"template: create.tmpl.html:22:41: executing \"main\" at <.Form.Url.String>: can't evaluate field String in type url.URL","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:44:10.576006262Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:44:11.276600374Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59360","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:44:11.513606306Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59360","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:47:16.569414138Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56034","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:47:16.569569128Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:47:19.637309313Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56034","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:47:22.278754552Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56034","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:47:29.919146854Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56034","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:51:29.060334848Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:51:29.426221193Z","level":"INFO","msg":"request received","ip":"127.0.0.1:55202","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:51:29.656815745Z","level":"INFO","msg":"request received","ip":"127.0.0.1:55202","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:51:32.33680727Z","level":"INFO","msg":"request received","ip":"127.0.0.1:55202","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:51:36.922232635Z","level":"INFO","msg":"request received","ip":"127.0.0.1:55202","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-04T12:51:37.399446061Z","level":"INFO","msg":"request received","ip":"127.0.0.1:55202","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-04T12:51:37.399569328Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-04T12:51:42.023027834Z","level":"INFO","msg":"request received","ip":"127.0.0.1:55202","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:51:55.88370579Z","level":"INFO","msg":"request received","ip":"127.0.0.1:55202","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}

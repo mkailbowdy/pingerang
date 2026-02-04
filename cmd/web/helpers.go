@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"net/smtp"
+
 	"time"
 
 	"github.com/chromedp/chromedp"
@@ -21,6 +22,7 @@ func (app *application) getUrlSelectorPostForm(w http.ResponseWriter, r *http.Re
 	}
 	url := r.PostForm.Get("url")
 	selector := r.PostForm.Get("selector")
+
 	return url, selector
 }
 

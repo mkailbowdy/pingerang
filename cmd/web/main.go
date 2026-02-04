@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"flag"
 	"html/template"
+	"log"
 	"log/slog"
 	"net/http"
 	"os"
@@ -24,8 +25,20 @@ func main() {
 	dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
 	flag.Parse()
 
-	logger := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
-		AddSource: true,
+	// logger := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
+	// 	AddSource: true,
+	// }))
+
+	file, err := os.OpenFile(
+		"app.log",
+		os.O_APPEND|os.O_CREATE|os.O_WRONLY,
+		0644,
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+	logger := slog.New(slog.NewJSONHandler(file, &slog.HandlerOptions{
+		Level: slog.LevelInfo,
 	}))
 
 	db, err := openDB(*dsn)
@@ -35,17 +48,17 @@ func main() {
 	defer db.Close()
 
 	templateCache, err := newTemplateCache()
-	if err != nil{
+	if err != nil {
 		logger.Error(err.Error())
 		os.Exit(1)
-	} 
+	}
 	app := &application{
-		sites:  &models.SiteModel{DB: db},
-		logger: logger,
+		sites:         &models.SiteModel{DB: db},
+		logger:        logger,
 		templateCache: templateCache,
 	}
 
-	// go app.getAllAndCompareRoutine()
+	go app.getAllAndCompareRoutine()
 
 	logger.Info("starting server", "addr", *addr)
 	err = http.ListenAndServe(*addr, app.routes())

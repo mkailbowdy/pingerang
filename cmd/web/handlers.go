@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"net/url"
+	"strings"
 	"time"
 
 	"github.com/mkailbowdy/internal/models"
@@ -34,18 +36,58 @@ func (app *application) dashboard(w http.ResponseWriter, r *http.Request) {
 func (app *application) createUrl(w http.ResponseWriter, r *http.Request) {
 	app.logger.Info("Rendering create URL page.")
 	data := app.newTemplateData(r)
+	// Initialize .Form because otherwise it will be nil when the template is parsed.
+	data.Form = make(map[string]string)
 	app.render(w, r, http.StatusOK, "create.tmpl.html", data)
 }
 
+// urlCreateForm represents the form data and validation errors for the form fields.
+type urlCreateForm struct {
+	Url         string
+	Selector    string
+	FieldErrors map[string]string
+}
+
 func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
-	url, selector := app.getUrlSelectorPostForm(w, r)
-	urlhash, pagehash := driveHash(url, selector)
+	u, selector := app.getUrlSelectorPostForm(w, r)
+
+	form := urlCreateForm{
+		Url:         u,
+		Selector:    selector,
+		FieldErrors: map[string]string{},
+	}
+	validUrl, err := url.Parse(u)
+	if err != nil {
+		app.logger.Error(err.Error())
+		return
+	}
+
+	if strings.TrimSpace(validUrl.String()) == "" {
+		form.FieldErrors["url"] = "This field cannot be blank."
+	} else if validUrl.Scheme == "" || validUrl.Host == "" {
+		form.FieldErrors["url"] = "url must be a an absolute URL"
+	} else if validUrl.Scheme != "http" && validUrl.Scheme != "https" {
+		form.FieldErrors["url"] = "error: url must begin with http or https"
+	}
+
+	if strings.TrimSpace(form.Selector) == "" {
+		form.FieldErrors["selector"] = "This field cannot be blank."
+	}
+
+	if len(form.FieldErrors) > 0 {
+		data := app.newTemplateData(r)
+		data.Form = form
+		app.render(w, r, http.StatusUnprocessableEntity, "create.tmpl.html", data)
+		return
+	}
+
+	urlhash, pagehash := driveHash(form.Url, form.Selector)
 	app.logger.Info("Hashes created.", "urlhash", urlhash)
 	if len(urlhash) == 0 || len(pagehash) == 0 {
 		app.logger.Error("There's a problem with the css selector you're using. Please fix the syntax and try again.")
 		return
 	}
-	_, err := app.sites.Insert(url, urlhash, pagehash, selector)
+	_, err = app.sites.Insert(form.Url, urlhash, pagehash, form.Selector)
 	if err != nil {
 		app.logger.Error(err.Error())
 		return
@@ -70,8 +112,9 @@ func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request
 }
 
 func (app *application) getAllAndCompareRoutine() {
+	// To Do: Run at the 50th minute of every hour.(e.g. 10:50, 11:50,...)
 	// Once an hour
-	ticker := time.NewTicker(10 * time.Second)
+	ticker := time.NewTicker(2 * time.Minute)
 	defer ticker.Stop()
 	for range ticker.C {
 		// Get all the urlhash from database and store in a []string
