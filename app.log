@@ -343,3 +343,10 @@
 {"time":"2026-02-04T12:51:37.399569328Z","level":"INFO","msg":"Rendering create URL page."}
 {"time":"2026-02-04T12:51:42.023027834Z","level":"INFO","msg":"request received","ip":"127.0.0.1:55202","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
 {"time":"2026-02-04T12:51:55.88370579Z","level":"INFO","msg":"request received","ip":"127.0.0.1:55202","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:55:10.655338896Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-04T12:55:12.495036733Z","level":"INFO","msg":"request received","ip":"127.0.0.1:33782","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:55:15.835180274Z","level":"INFO","msg":"request received","ip":"127.0.0.1:33782","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:55:19.155099163Z","level":"INFO","msg":"request received","ip":"127.0.0.1:33782","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:55:47.897950775Z","level":"INFO","msg":"request received","ip":"127.0.0.1:33782","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-04T12:55:48.06949914Z","level":"INFO","msg":"request received","ip":"127.0.0.1:33782","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-04T12:55:52.962260768Z","level":"INFO","msg":"request received","ip":"127.0.0.1:33782","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
