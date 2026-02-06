@@ -56,6 +56,7 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 		Selector:    selector,
 		FieldErrors: map[string]string{},
 	}
+	fmt.Printf("Received URL: %s and Selector: %s\n", form.Url, form.Selector)
 	validUrl, err := url.Parse(u)
 	if err != nil {
 		app.logger.Error(err.Error())
@@ -114,7 +115,7 @@ func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request
 func (app *application) getAllAndCompareRoutine() {
 	// To Do: Run at the 50th minute of every hour.(e.g. 10:50, 11:50,...)
 	// Once an hour
-	ticker := time.NewTicker(2 * time.Minute)
+	ticker := time.NewTicker(20 * time.Minute)
 	defer ticker.Stop()
 	for range ticker.C {
 		// Get all the urlhash from database and store in a []string

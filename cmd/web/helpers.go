@@ -22,7 +22,7 @@ func (app *application) getUrlSelectorPostForm(w http.ResponseWriter, r *http.Re
 	}
 	url := r.PostForm.Get("url")
 	selector := r.PostForm.Get("selector")
-
+	fmt.Printf("The URL is %s and the selector is %s\n", url, selector)
 	return url, selector
 }
 
@@ -40,7 +40,7 @@ func driveHash(url, selector string) (string, string) {
 	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
 
-	ctx, cancel = context.WithTimeout(ctx, 30*time.Second)
+	ctx, cancel = context.WithTimeout(ctx, 120*time.Second)
 	defer cancel()
 
 	var html string

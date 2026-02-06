@@ -350,3 +350,168 @@
 {"time":"2026-02-04T12:55:47.897950775Z","level":"INFO","msg":"request received","ip":"127.0.0.1:33782","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
 {"time":"2026-02-04T12:55:48.06949914Z","level":"INFO","msg":"request received","ip":"127.0.0.1:33782","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
 {"time":"2026-02-04T12:55:52.962260768Z","level":"INFO","msg":"request received","ip":"127.0.0.1:33782","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:22:03.37994534Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T12:22:23.364233306Z","level":"INFO","msg":"request received","ip":"127.0.0.1:48460","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:22:27.699305895Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56736","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:22:27.699371527Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:22:53.405881943Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:22:53.405907127Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:22:53.835988935Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54366","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:23:23.907875143Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:23:23.907901783Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:24:40.174796122Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T12:25:13.453987121Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57454","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-06T12:25:19.436828433Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57454","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T12:25:21.984397542Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57454","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:25:21.984492275Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:25:47.59742374Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57454","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:25:50.50877276Z","level":"INFO","msg":"Hashes created.","urlhash":"ac6bb669e40e44a8d9f8f0c94dfc63734049dcf6219aac77f02edf94b9162c09"}
+{"time":"2026-02-06T12:25:50.691393503Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57454","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T12:26:00.145004512Z","level":"INFO","msg":"request received","ip":"127.0.0.1:57454","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:26:00.145118139Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:28:49.76978104Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41404","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:29:19.832261355Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:29:19.832317544Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:29:36.471123582Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41404","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:29:36.471212389Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:30:19.479456166Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41404","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:30:49.544134819Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:30:49.544176937Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:31:31.059161244Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T12:31:52.486282951Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49048","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:31:52.486431948Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:32:38.365026936Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49048","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:33:08.436445842Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:33:08.436504236Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:33:42.125295347Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T12:33:58.329887834Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49440","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:33:58.329998034Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:34:05.008018528Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49440","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:34:35.057424495Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:34:35.057475562Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:36:57.559410813Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T12:36:57.822214529Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47338","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:36:57.822269113Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:37:02.499226723Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47338","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:37:32.543041244Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:37:32.543074943Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:39:45.013668352Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T12:39:46.344471177Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41108","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:39:48.875880189Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41112","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:39:48.876078678Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:40:16.387177525Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:40:16.3872037Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:40:24.712514643Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54166","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:40:28.859456806Z","level":"INFO","msg":"Hashes created.","urlhash":"2ae55a5eb416bf4ad2ac051a52f3ba123f26e748f343b0e161c28aa66a78c69d"}
+{"time":"2026-02-06T12:40:29.020857492Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54166","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T12:41:16.896169745Z","level":"INFO","msg":"request received","ip":"127.0.0.1:54166","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T12:42:40.241699417Z","level":"INFO","msg":"request received","ip":"127.0.0.1:41144","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T12:43:17.865098561Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47410","proto":"HTTP/1.1","method":"POST","uri":"/url/2"}
+{"time":"2026-02-06T12:43:27.969000545Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47410","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T12:46:20.378985342Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T12:50:11.51809044Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50840","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:50:11.518264955Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:50:26.849807702Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50840","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:50:56.899562628Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:50:56.899599377Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:52:21.485430696Z","level":"INFO","msg":"request received","ip":"127.0.0.1:50840","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:52:23.838301093Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35260","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:52:23.838361227Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:52:26.023691529Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35260","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T12:52:27.178669229Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35260","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:52:27.178783171Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:52:51.584432289Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:52:51.584525178Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:53:16.789793677Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35260","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:53:29.789049247Z","level":"INFO","msg":"Hashes created.","urlhash":"663fd4bd5e43f880e888f2a57318c4690c42231be3f928117fd08516a81092ee"}
+{"time":"2026-02-06T12:53:30.036089112Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35260","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T12:54:13.047900555Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35260","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:54:13.048057051Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T12:54:41.277540364Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35260","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T12:55:11.33708687Z","level":"INFO","msg":"Hashes created.","urlhash":""}
+{"time":"2026-02-06T12:55:11.337119072Z","level":"ERROR","msg":"There's a problem with the css selector you're using. Please fix the syntax and try again."}
+{"time":"2026-02-06T12:59:42.403893019Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T12:59:48.244877175Z","level":"INFO","msg":"request received","ip":"127.0.0.1:45320","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-06T12:59:50.042024902Z","level":"INFO","msg":"request received","ip":"127.0.0.1:45320","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T12:59:50.042138138Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:00:40.788254059Z","level":"INFO","msg":"request received","ip":"127.0.0.1:45320","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T13:01:39.330849226Z","level":"INFO","msg":"Hashes created.","urlhash":"465751f06ff1c50517114964039801f82ad85c7810b450a34171db37c541af24"}
+{"time":"2026-02-06T13:01:39.457389673Z","level":"INFO","msg":"request received","ip":"127.0.0.1:45320","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:01:48.080201499Z","level":"INFO","msg":"request received","ip":"127.0.0.1:45320","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:02:07.783305151Z","level":"INFO","msg":"request received","ip":"127.0.0.1:45320","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:02:09.320379482Z","level":"INFO","msg":"request received","ip":"127.0.0.1:45320","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T13:02:09.320459676Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:04:46.584568142Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43852","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T13:06:01.020351899Z","level":"INFO","msg":"Hashes created.","urlhash":"465751f06ff1c50517114964039801f82ad85c7810b450a34171db37c541af24"}
+{"time":"2026-02-06T13:06:01.208210328Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43852","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:08:02.183227561Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49312","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-06T13:10:04.781824632Z","level":"INFO","msg":"request received","ip":"127.0.0.1:52332","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-06T13:11:29.86798509Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T13:11:30.130466706Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56952","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:11:59.683975653Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56952","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T13:11:59.684097943Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:12:08.152159546Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56952","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-06T13:12:10.105826797Z","level":"INFO","msg":"Hashes created.","urlhash":"ac6bb669e40e44a8d9f8f0c94dfc63734049dcf6219aac77f02edf94b9162c09"}
+{"time":"2026-02-06T13:12:10.253332275Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56952","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:12:13.126121391Z","level":"INFO","msg":"request received","ip":"127.0.0.1:56952","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:13:59.33090007Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T13:14:03.169506526Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46184","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:15:16.296060263Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46184","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:16:27.484763176Z","level":"INFO","msg":"request received","ip":"[::1]:47356","proto":"HTTP/1.1","method":"POST","uri":"/url/compare"}
+{"time":"2026-02-06T13:16:27.485221357Z","level":"ERROR","msg":"Error 1054 (42S22): Unknown column 'update_at' in 'field list'"}
+{"time":"2026-02-06T13:17:17.649617926Z","level":"INFO","msg":"request received","ip":"127.0.0.1:51752","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-06T13:17:17.734331793Z","level":"INFO","msg":"request received","ip":"127.0.0.1:51756","proto":"HTTP/1.1","method":"POST","uri":"/url/2"}
+{"time":"2026-02-06T13:17:26.863289068Z","level":"INFO","msg":"request received","ip":"127.0.0.1:51756","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:17:28.461582321Z","level":"INFO","msg":"request received","ip":"127.0.0.1:51756","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:18:55.966057556Z","level":"INFO","msg":"request received","ip":"[::1]:49554","proto":"HTTP/1.1","method":"POST","uri":"/url/compare"}
+{"time":"2026-02-06T13:18:55.966386504Z","level":"ERROR","msg":"Error 1054 (42S22): Unknown column 'update_at' in 'field list'"}
+{"time":"2026-02-06T13:19:28.877987758Z","level":"INFO","msg":"request received","ip":"127.0.0.1:40514","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-06T13:19:28.878388398Z","level":"INFO","msg":"request received","ip":"127.0.0.1:40498","proto":"HTTP/1.1","method":"POST","uri":"/url/2"}
+{"time":"2026-02-06T13:21:31.608520052Z","level":"INFO","msg":"request received","ip":"127.0.0.1:51812","proto":"HTTP/1.1","method":"POST","uri":"/url/0"}
+{"time":"2026-02-06T13:21:31.67231546Z","level":"INFO","msg":"request received","ip":"127.0.0.1:51828","proto":"HTTP/1.1","method":"POST","uri":"/url/0"}
+{"time":"2026-02-06T13:22:09.42142655Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T13:22:14.322379351Z","level":"INFO","msg":"request received","ip":"[::1]:33906","proto":"HTTP/1.1","method":"POST","uri":"/url/compare"}
+{"time":"2026-02-06T13:22:21.797639989Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34554","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:22:31.523357438Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34554","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:22:33.049142843Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34554","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:23:12.986570547Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34554","proto":"HTTP/1.1","method":"PATCH","uri":"/url/2"}
+{"time":"2026-02-06T13:23:18.108313759Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34554","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T13:23:18.108523302Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:23:19.646454971Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34554","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:23:40.129476769Z","level":"INFO","msg":"request received","ip":"127.0.0.1:44660","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-06T13:23:40.369781267Z","level":"INFO","msg":"request received","ip":"127.0.0.1:44660","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-06T13:23:40.615728007Z","level":"INFO","msg":"request received","ip":"127.0.0.1:44660","proto":"HTTP/1.1","method":"GET","uri":"/favicon.ico"}
+{"time":"2026-02-06T13:23:44.833622432Z","level":"INFO","msg":"request received","ip":"127.0.0.1:44660","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T13:23:44.833747094Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:23:48.827418454Z","level":"INFO","msg":"request received","ip":"127.0.0.1:44660","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T13:23:48.827536356Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:29:05.025399136Z","level":"INFO","msg":"request received","ip":"127.0.0.1:59984","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:30:06.70705214Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-06T13:30:09.317257025Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37094","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:30:11.757507155Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37094","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T13:30:11.757564585Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:30:13.330668011Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37094","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:30:23.566315421Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37094","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T13:30:23.566405268Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:30:25.975200107Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37094","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:31:53.922779694Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37094","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:32:01.351591797Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37094","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:32:01.556784706Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37094","proto":"HTTP/1.1","method":"GET","uri":"/static/js/htmx.min.js"}
+{"time":"2026-02-06T13:32:01.610803787Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46262","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-06T13:32:02.886719252Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46262","proto":"HTTP/1.1","method":"GET","uri":"/favicon.ico"}
+{"time":"2026-02-06T13:32:05.769600077Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46262","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T13:32:05.769708209Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:32:07.496171379Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46262","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T13:32:07.496289444Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:32:08.273797966Z","level":"INFO","msg":"request received","ip":"127.0.0.1:37094","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-06T13:32:08.273811103Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46262","proto":"HTTP/1.1","method":"GET","uri":"/static/js/htmx.min.js"}
+{"time":"2026-02-06T13:32:09.030985791Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46262","proto":"HTTP/1.1","method":"GET","uri":"/favicon.ico"}
+{"time":"2026-02-06T13:32:15.576318924Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43668","proto":"HTTP/1.1","method":"GET","uri":"/favicon.ico"}
+{"time":"2026-02-06T13:32:20.269575964Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43684","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:32:20.601352846Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43684","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-06T13:32:20.660699288Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43690","proto":"HTTP/1.1","method":"GET","uri":"/static/js/htmx.min.js"}
+{"time":"2026-02-06T13:32:22.34153963Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43684","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-06T13:32:22.341704161Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-06T13:32:23.73246914Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43684","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-06T13:34:25.867144135Z","level":"INFO","msg":"request received","ip":"127.0.0.1:40434","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-06T13:34:26.078807878Z","level":"INFO","msg":"request received","ip":"127.0.0.1:40446","proto":"HTTP/1.1","method":"POST","uri":"/url/2"}

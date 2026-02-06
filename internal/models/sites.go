@@ -8,13 +8,14 @@ import (
 )
 
 type Site struct {
-	ID       int
-	Url      string
-	Created  time.Time
-	Urlhash  string
-	Pagehash string
-	Selector string
-	Changed  bool
+	ID        int
+	Url       string
+	Created   time.Time
+	Urlhash   string
+	Pagehash  string
+	Selector  string
+	Changed   bool
+	UpdatedAt time.Time
 }
 
 type SiteModel struct {
@@ -37,10 +38,10 @@ func (m *SiteModel) Insert(url, urlhash, pagehash, selector string) (int, error)
 }
 
 func (m *SiteModel) Get(url string) (Site, error) {
-	stmt := `SELECT id, url, created, urlhash, pagehash, selector, changed FROM sites WHERE url = ?`
+	stmt := `SELECT id, url, created, urlhash, pagehash, selector, changed, updated_at FROM sites WHERE url = ?`
 	row := m.DB.QueryRow(stmt, url)
 	var s Site
-	err := row.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash, &s.Selector, &s.Changed)
+	err := row.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash, &s.Selector, &s.Changed, &s.UpdatedAt)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return Site{}, ErrNoRecord
@@ -51,7 +52,7 @@ func (m *SiteModel) Get(url string) (Site, error) {
 	return s, err
 }
 
-func (m *SiteModel) MarkAsChanged(urlhash string) error{
+func (m *SiteModel) MarkAsChanged(urlhash string) error {
 	stmt := `UPDATE sites SET changed = ? WHERE urlhash = ?`
 	_, err := m.DB.Exec(stmt, 1, urlhash)
 	if err != nil {
@@ -72,7 +73,7 @@ func (m *SiteModel) Update(urlhash, pagehash string) error {
 }
 
 func (m *SiteModel) GetAll() ([]Site, error) {
-	stmt := `SELECT id, url, created, urlhash, pagehash, selector, changed FROM sites`
+	stmt := `SELECT id, url, created, urlhash, pagehash, selector, changed, updated_at FROM sites`
 	rows, err := m.DB.Query(stmt)
 	if err != nil {
 		return nil, err
@@ -82,7 +83,7 @@ func (m *SiteModel) GetAll() ([]Site, error) {
 	var sites []Site
 	for rows.Next() {
 		var s Site
-		err = rows.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash, &s.Selector, &s.Changed)
+		err = rows.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash, &s.Selector, &s.Changed, &s.UpdatedAt)
 		if err != nil {
 			return nil, err
 		}
