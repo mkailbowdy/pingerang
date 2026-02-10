@@ -43,21 +43,16 @@ func (app *application) createUrl(w http.ResponseWriter, r *http.Request) {
 
 // urlCreateForm represents the form data and validation errors for the form fields.
 type urlCreateForm struct {
-	Url       string
-	Selector  string
-	Validator validator.Validator
+	Url       string `form:"url"`
+	Selector  string `form:"selector"`
+	Validator validator.Validator `form:"-"`
 }
 
 func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
-	u, selector := app.getUrlSelectorPostForm(w, r)
-
-	form := urlCreateForm{
-		Url:       u,
-		Selector:  selector,
-		Validator: validator.Validator{},
-	}
+	form := app.getUrlSelectorPostForm(w, r)
+	
 	fmt.Printf("Received URL: %s and Selector: %s\n", form.Url, form.Selector)
-	validUrl, err := url.Parse(u)
+	validUrl, err := url.Parse(form.Url)
 	if err != nil {
 		app.logger.Error(err.Error())
 		return
@@ -90,15 +85,15 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request) {
-	url, _ := app.getUrlSelectorPostForm(w, r)
-	s, err := app.sites.Get(url)
+	form := app.getUrlSelectorPostForm(w, r)
+	s, err := app.sites.Get(form.Url)
 	if err != nil {
 		app.logger.Error(err.Error())
 		return
 	}
 	_, pagehash := driveHash(s.Url, s.Selector)
 
-	err = app.compareHashes(url, pagehash)
+	err = app.compareHashes(s.Url, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
 	}

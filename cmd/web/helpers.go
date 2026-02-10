@@ -14,16 +14,18 @@ import (
 	"github.com/chromedp/chromedp"
 )
 
-func (app *application) getUrlSelectorPostForm(w http.ResponseWriter, r *http.Request) (string, string) {
+func (app *application) getUrlSelectorPostForm(w http.ResponseWriter, r *http.Request) (urlCreateForm) {
 	err := r.ParseForm()
 	if err != nil {
 		app.clientError(w, http.StatusBadRequest)
-		return "", ""
+		return urlCreateForm{}
 	}
-	url := r.PostForm.Get("url")
-	selector := r.PostForm.Get("selector")
-	fmt.Printf("The URL is %s and the selector is %s\n", url, selector)
-	return url, selector
+	var form urlCreateForm
+	err = app.formDecoder.Decode(&form, r.PostForm)
+	// url := r.PostForm.Get("url")
+	// selector := r.PostForm.Get("selector")
+	// fmt.Printf("The URL is %s and the selector is %s\n", url, selector)
+	return form
 }
 
 func driveHash(url, selector string) (string, string) {

@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/go-playground/form/v4"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mkailbowdy/internal/models"
 )
@@ -17,6 +18,7 @@ type application struct {
 	sites         *models.SiteModel
 	logger        *slog.Logger
 	templateCache map[string]*template.Template
+	formDecoder   *form.Decoder
 }
 
 func main() {
@@ -52,10 +54,13 @@ func main() {
 		logger.Error(err.Error())
 		os.Exit(1)
 	}
+
+	formDecoder := form.NewDecoder()
 	app := &application{
 		sites:         &models.SiteModel{DB: db},
 		logger:        logger,
 		templateCache: templateCache,
+		formDecoder: formDecoder,
 	}
 
 	go app.getAllAndCompareRoutine()
