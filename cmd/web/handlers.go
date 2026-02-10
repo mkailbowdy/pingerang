@@ -6,10 +6,10 @@ import (
 	"html/template"
 	"net/http"
 	"net/url"
-	"strings"
 	"time"
 
 	"github.com/mkailbowdy/internal/models"
+	"github.com/mkailbowdy/internal/validator"
 )
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
@@ -43,18 +43,18 @@ func (app *application) createUrl(w http.ResponseWriter, r *http.Request) {
 
 // urlCreateForm represents the form data and validation errors for the form fields.
 type urlCreateForm struct {
-	Url         string
-	Selector    string
-	FieldErrors map[string]string
+	Url       string
+	Selector  string
+	Validator validator.Validator
 }
 
 func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 	u, selector := app.getUrlSelectorPostForm(w, r)
 
 	form := urlCreateForm{
-		Url:         u,
-		Selector:    selector,
-		FieldErrors: map[string]string{},
+		Url:       u,
+		Selector:  selector,
+		Validator: validator.Validator{},
 	}
 	fmt.Printf("Received URL: %s and Selector: %s\n", form.Url, form.Selector)
 	validUrl, err := url.Parse(u)
@@ -63,19 +63,11 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if strings.TrimSpace(validUrl.String()) == "" {
-		form.FieldErrors["url"] = "This field cannot be blank."
-	} else if validUrl.Scheme == "" || validUrl.Host == "" {
-		form.FieldErrors["url"] = "url must be a an absolute URL"
-	} else if validUrl.Scheme != "http" && validUrl.Scheme != "https" {
-		form.FieldErrors["url"] = "error: url must begin with http or https"
-	}
-
-	if strings.TrimSpace(form.Selector) == "" {
-		form.FieldErrors["selector"] = "This field cannot be blank."
-	}
-
-	if len(form.FieldErrors) > 0 {
+	// Check NotBlank and ValidUrl
+	form.Validator.CheckField(form.Validator.NotBlank(validUrl.String()), "url", "This field cannot be blank.")
+	form.Validator.CheckField(form.Validator.ValidUrl(*validUrl), "url", "This must be an absolute link that begins with http or https")
+	form.Validator.CheckField(form.Validator.NotBlank(form.Selector), "selector", "This field cannot be blank")
+	if !form.Validator.Valid() {
 		data := app.newTemplateData(r)
 		data.Form = form
 		app.render(w, r, http.StatusUnprocessableEntity, "create.tmpl.html", data)

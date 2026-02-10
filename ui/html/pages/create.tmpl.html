@@ -13,7 +13,7 @@
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div class="sm:col-span-4">
                 <label for="url" class="block text-sm/6 font-medium text-gray-900 dark:text-white">URL</label>
-                {{with .Form.FieldErrors.url}}
+                {{with .Form.Validator.FieldErrors.url}}
                 <label class='text-red-500'>{{.}}</label>
                 {{end}}
                 <div class="mt-2">
@@ -30,7 +30,7 @@
               <div class="col-span-full">
                 <label for="selector" class="block text-sm/6 font-medium text-gray-900 dark:text-white">CSS
                   Selector</label>
-                {{with .Form.FieldErrors.selector}}
+                {{with .Form.Validator.FieldErrors.selector}}
                 <label class='text-red-500'>{{.}}</label>
                 {{end}}
                 <div class="mt-2">
