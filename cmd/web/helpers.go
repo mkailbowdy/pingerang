@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"crypto/sha256"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -12,16 +13,16 @@ import (
 	"time"
 
 	"github.com/chromedp/chromedp"
+	"github.com/go-playground/form/v4"
 )
 
-func (app *application) getUrlSelectorPostForm(w http.ResponseWriter, r *http.Request) (urlCreateForm) {
-	err := r.ParseForm()
+func (app *application) getUrlSelectorPostForm(w http.ResponseWriter, r *http.Request) urlCreateForm {
+	var form urlCreateForm
+	err := app.decodePostForm(r, &form)
 	if err != nil {
 		app.clientError(w, http.StatusBadRequest)
 		return urlCreateForm{}
 	}
-	var form urlCreateForm
-	err = app.formDecoder.Decode(&form, r.PostForm)
 	// url := r.PostForm.Get("url")
 	// selector := r.PostForm.Get("selector")
 	// fmt.Printf("The URL is %s and the selector is %s\n", url, selector)
@@ -127,4 +128,21 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, status in
 	// Write out the provided HTTP status code ('200 OK', '400 Bad Request' etc).
 	w.WriteHeader(status)
 	buf.WriteTo(w)
+}
+
+func (app *application) decodePostForm(r *http.Request, destination any) error {
+	err := r.ParseForm()
+	if err != nil {
+		return err
+	}
+
+	err = app.formDecoder.Decode(destination, r.PostForm)
+	if err != nil {
+		var invalidDecoderError *form.InvalidDecoderError
+
+		if errors.As(err, &invalidDecoderError) {
+			panic(err)
+		}
+	}
+	return err
 }
