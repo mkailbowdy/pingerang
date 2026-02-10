@@ -4,6 +4,8 @@ import (
 	"slices"
 	"strings"
 	"unicode/utf8"
+	"net/url"
+
 )
 
 type Validator struct {
@@ -43,4 +45,13 @@ func (v *Validator) MaxChars(value string, n int) bool {
 
 func PermittedValue[T comparable](value T, permittedValues ...T) bool {
 	return slices.Contains(permittedValues, value)
+}
+
+func (v *Validator) ValidUrl(userUrl url.URL) bool {
+	if (userUrl.Scheme == "" || userUrl.Host == "") {
+		return false
+	} else if userUrl.Scheme != "http" && userUrl.Scheme != "https" {
+		return false
+	}
+	return true
 }
