@@ -515,3 +515,13 @@
 {"time":"2026-02-06T13:32:23.73246914Z","level":"INFO","msg":"request received","ip":"127.0.0.1:43684","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
 {"time":"2026-02-06T13:34:25.867144135Z","level":"INFO","msg":"request received","ip":"127.0.0.1:40434","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
 {"time":"2026-02-06T13:34:26.078807878Z","level":"INFO","msg":"request received","ip":"127.0.0.1:40446","proto":"HTTP/1.1","method":"POST","uri":"/url/2"}
+{"time":"2026-02-10T09:25:16.192468253Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-10T09:25:30.541257585Z","level":"INFO","msg":"request received","ip":"127.0.0.1:35992","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-10T09:25:30.542372642Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36008","proto":"HTTP/1.1","method":"POST","uri":"/url/2"}
+{"time":"2026-02-10T09:25:33.545064652Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36008","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-10T09:25:44.808316633Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36008","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-10T09:26:28.97247938Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36008","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-10T09:26:28.972676871Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-10T09:26:31.523424919Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36008","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-10T09:26:38.208094085Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36008","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-10T09:26:51.587289362Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36008","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}

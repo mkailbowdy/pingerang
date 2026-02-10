@@ -115,9 +115,10 @@ func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request
 func (app *application) getAllAndCompareRoutine() {
 	// To Do: Run at the 50th minute of every hour.(e.g. 10:50, 11:50,...)
 	// Once an hour
-	ticker := time.NewTicker(20 * time.Minute)
+	ticker := time.NewTicker(1 * time.Minute)
 	defer ticker.Stop()
 	for range ticker.C {
+		fmt.Printf("Running: getAllAndCompareRoutine")
 		// Get all the urlhash from database and store in a []string
 		sites, err := app.sites.GetAll()
 		if err != nil {
