@@ -43,14 +43,14 @@ func (app *application) createUrl(w http.ResponseWriter, r *http.Request) {
 
 // urlCreateForm represents the form data and validation errors for the form fields.
 type urlCreateForm struct {
-	Url       string `form:"url"`
-	Selector  string `form:"selector"`
+	Url       string              `form:"url"`
+	Selector  string              `form:"selector"`
 	Validator validator.Validator `form:"-"`
 }
 
 func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 	form := app.getUrlSelectorPostForm(w, r)
-	
+
 	fmt.Printf("Received URL: %s and Selector: %s\n", form.Url, form.Selector)
 	validUrl, err := url.Parse(form.Url)
 	if err != nil {
@@ -80,6 +80,8 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 		app.logger.Error(err.Error())
 		return
 	}
+
+	app.sessionManager.Put(r.Context(), "flash", "Url successfully created!")
 
 	http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
 }

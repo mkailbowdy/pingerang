@@ -589,3 +589,53 @@
 {"time":"2026-02-10T11:57:13.666386769Z","level":"INFO","msg":"request received","ip":"127.0.0.1:53382","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
 {"time":"2026-02-10T11:57:13.783718949Z","level":"INFO","msg":"request received","ip":"127.0.0.1:53396","proto":"HTTP/1.1","method":"POST","uri":"/url/3"}
 {"time":"2026-02-10T11:57:13.784019643Z","level":"INFO","msg":"request received","ip":"127.0.0.1:53404","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-10T12:00:10.236157018Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-10T12:00:11.391698312Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47408","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-10T12:00:14.429182451Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47408","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-10T12:00:14.429324597Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-10T12:00:16.317932863Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47408","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-10T12:00:16.536561495Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60404","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-12T09:02:45.236481908Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-12T09:03:26.039941474Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-12T09:04:01.323858955Z","level":"INFO","msg":"request received","ip":"127.0.0.1:38396","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-12T09:09:23.470157021Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-12T09:09:37.926253881Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49836","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-12T09:09:38.271635682Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49836","proto":"HTTP/1.1","method":"GET","uri":"/static/css/output.css"}
+{"time":"2026-02-12T09:09:39.331670426Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49836","proto":"HTTP/1.1","method":"GET","uri":"/favicon.ico"}
+{"time":"2026-02-12T09:09:40.676335553Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49836","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-12T09:09:40.676446573Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-12T09:09:41.619523117Z","level":"INFO","msg":"request received","ip":"127.0.0.1:49836","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-12T09:11:42.284917613Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34310","proto":"HTTP/1.1","method":"POST","uri":"/url/1"}
+{"time":"2026-02-12T09:11:42.285112363Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34330","proto":"HTTP/1.1","method":"POST","uri":"/url/4"}
+{"time":"2026-02-12T09:11:42.285118186Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34308","proto":"HTTP/1.1","method":"POST","uri":"/url/3"}
+{"time":"2026-02-12T10:09:05.800825864Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-12T10:09:07.461048193Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47716","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-12T10:10:58.413773351Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-12T10:11:20.357407946Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-12T10:30:56.762291138Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-12T10:31:00.249142427Z","level":"INFO","msg":"request received","ip":"127.0.0.1:42290","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-12T10:31:02.295075413Z","level":"INFO","msg":"request received","ip":"127.0.0.1:42290","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-12T10:31:02.295243112Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-12T10:31:16.084284808Z","level":"INFO","msg":"request received","ip":"127.0.0.1:42290","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-12T10:31:19.556749609Z","level":"INFO","msg":"Hashes created.","urlhash":"0abb049d481408a4195636d2d8c452b073b832fcdb6b92c896a2ff8d3c744e6d"}
+{"time":"2026-02-12T10:31:19.703326066Z","level":"INFO","msg":"request received","ip":"127.0.0.1:42290","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-12T10:31:29.937935274Z","level":"INFO","msg":"request received","ip":"127.0.0.1:42290","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-12T10:33:31.106642411Z","level":"INFO","msg":"request received","ip":"127.0.0.1:46162","proto":"HTTP/1.1","method":"POST","uri":"/url/5"}
+{"time":"2026-02-12T10:35:34.020001667Z","level":"INFO","msg":"request received","ip":"127.0.0.1:47076","proto":"HTTP/1.1","method":"POST","uri":"/url/5"}
+{"time":"2026-02-12T10:37:36.091999105Z","level":"INFO","msg":"request received","ip":"127.0.0.1:34046","proto":"HTTP/1.1","method":"POST","uri":"/url/5"}
+{"time":"2026-02-12T10:39:38.278550459Z","level":"INFO","msg":"request received","ip":"127.0.0.1:52148","proto":"HTTP/1.1","method":"POST","uri":"/url/5"}
+{"time":"2026-02-12T10:41:40.275510286Z","level":"INFO","msg":"request received","ip":"127.0.0.1:36130","proto":"HTTP/1.1","method":"POST","uri":"/url/5"}
+{"time":"2026-02-12T10:41:50.358840456Z","level":"INFO","msg":"starting server","addr":":4000"}
+{"time":"2026-02-12T10:41:53.90888382Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60358","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-12T10:41:56.146000505Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60358","proto":"HTTP/1.1","method":"PATCH","uri":"/url/1"}
+{"time":"2026-02-12T10:41:56.775873615Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60372","proto":"HTTP/1.1","method":"PATCH","uri":"/url/2"}
+{"time":"2026-02-12T10:41:57.613610144Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60388","proto":"HTTP/1.1","method":"PATCH","uri":"/url/3"}
+{"time":"2026-02-12T10:41:58.273368511Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60396","proto":"HTTP/1.1","method":"PATCH","uri":"/url/4"}
+{"time":"2026-02-12T10:42:05.874098613Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60358","proto":"HTTP/1.1","method":"GET","uri":"/url/create"}
+{"time":"2026-02-12T10:42:05.875753253Z","level":"INFO","msg":"Rendering create URL page."}
+{"time":"2026-02-12T10:42:16.114292923Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60358","proto":"HTTP/1.1","method":"GET","uri":"/"}
+{"time":"2026-02-12T10:42:28.403261929Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60358","proto":"HTTP/1.1","method":"POST","uri":"/url/create"}
+{"time":"2026-02-12T10:42:42.516951717Z","level":"INFO","msg":"Hashes created.","urlhash":"11dbed76b98833a7f291ae833c486a493293b3d72597d1a28c782805086b9126"}
+{"time":"2026-02-12T10:42:42.75314387Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60358","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-12T10:43:59.121056638Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60358","proto":"HTTP/1.1","method":"GET","uri":"/dashboard"}
+{"time":"2026-02-12T10:44:05.498654706Z","level":"INFO","msg":"request received","ip":"127.0.0.1:60358","proto":"HTTP/1.1","method":"PATCH","uri":"/url/6"}

@@ -3,22 +3,27 @@ package main
 import (
 	"database/sql"
 	"flag"
+	"fmt"
 	"html/template"
 	"log"
 	"log/slog"
 	"net/http"
 	"os"
+	"time"
 
+	"github.com/alexedwards/scs/mysqlstore" // New import
+	"github.com/alexedwards/scs/v2"         // New import
 	"github.com/go-playground/form/v4"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mkailbowdy/internal/models"
 )
 
 type application struct {
-	sites         *models.SiteModel
-	logger        *slog.Logger
-	templateCache map[string]*template.Template
-	formDecoder   *form.Decoder
+	sites          *models.SiteModel
+	logger         *slog.Logger
+	templateCache  map[string]*template.Template
+	formDecoder    *form.Decoder
+	sessionManager *scs.SessionManager
 }
 
 func main() {
@@ -56,16 +61,23 @@ func main() {
 	}
 
 	formDecoder := form.NewDecoder()
+
+	sessionManager := scs.New()
+	sessionManager.Store = mysqlstore.New(db)
+	sessionManager.Lifetime = 12 * time.Hour
+
 	app := &application{
-		sites:         &models.SiteModel{DB: db},
-		logger:        logger,
-		templateCache: templateCache,
-		formDecoder: formDecoder,
+		sites:          &models.SiteModel{DB: db},
+		logger:         logger,
+		templateCache:  templateCache,
+		formDecoder:    formDecoder,
+		sessionManager: sessionManager,
 	}
 
 	go app.getAllAndCompareRoutine()
 
 	logger.Info("starting server", "addr", *addr)
+	fmt.Println("Listening and serving requests!")
 	err = http.ListenAndServe(*addr, app.routes())
 	logger.Error(err.Error())
 	os.Exit(1)
