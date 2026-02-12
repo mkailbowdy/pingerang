@@ -76,9 +76,13 @@ func main() {
 
 	go app.getAllAndCompareRoutine()
 
+	srv := &http.Server{
+		Addr: *addr,
+		Handler: app.routes(),
+	}
 	logger.Info("starting server", "addr", *addr)
 	fmt.Println("Listening and serving requests!")
-	err = http.ListenAndServe(*addr, app.routes())
+	err = srv.ListenAndServe()
 	logger.Error(err.Error())
 	os.Exit(1)
 }
