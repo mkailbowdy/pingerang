@@ -5,7 +5,6 @@ import (
 	"flag"
 	"fmt"
 	"html/template"
-	"log"
 	"log/slog"
 	"net/http"
 	"os"
@@ -36,20 +35,21 @@ func main() {
 	// 	AddSource: true,
 	// }))
 
-	file, err := os.OpenFile(
-		"app.log",
-		os.O_APPEND|os.O_CREATE|os.O_WRONLY,
-		0644,
-	)
-	if err != nil {
-		log.Fatal(err)
-	}
-	logger := slog.New(slog.NewJSONHandler(file, &slog.HandlerOptions{
+	// file, err := os.OpenFile(
+	// 	"app.log",
+	// 	os.O_APPEND|os.O_CREATE|os.O_WRONLY,
+	// 	0644,
+	// )
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 		Level: slog.LevelInfo,
 	}))
 
 	db, err := openDB(*dsn)
 	if err != nil {
+		fmt.Printf("Failed to open database.")
 		os.Exit(1)
 	}
 	defer db.Close()
