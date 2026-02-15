@@ -49,7 +49,7 @@ func main() {
 
 	db, err := openDB(*dsn)
 	if err != nil {
-		fmt.Printf("Failed to open database.")
+		fmt.Printf("Failed to open database: %s\n", err.Error())
 		os.Exit(1)
 	}
 	defer db.Close()
