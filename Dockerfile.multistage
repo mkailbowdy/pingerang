@@ -1,0 +1,40 @@
+FROM golang:trixie AS build-stage
+
+# Step 2: Install Chromium and dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+# Step 3: Install Node.js and Tailwind CSS v4 CLI
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g @tailwindcss/cli
+
+# Step 4: Set up your workspace
+WORKDIR /app
+COPY . .
+
+# Step 5: Install Tailwind locally so @import "tailwindcss" can resolve
+RUN npm init -y && npm install tailwindcss
+
+# Step 6: Generate Tailwind CSS output
+RUN npx @tailwindcss/cli -i ./ui/static/css/input.css -o ./ui/static/css/output.css
+
+# Step 7: Build your Go application
+RUN go mod download
+RUN go build -o ./pingerang ./cmd/web
+
+FROM chromedp/headless-shell:latest AS build-release-stage
+WORKDIR /
+COPY --from=build-stage /app /
+
+RUN apt-get update && apt-get install -y \
+    xvfb \
+    xauth \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+# Run the app
+#CMD ["xvfb-run", "-a", "./pingerang"]
+ENTRYPOINT ["sh", "-c", "xvfb-run -a ./pingerang \"$@\"", "--"]
