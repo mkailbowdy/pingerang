@@ -27,7 +27,8 @@ RUN go build -o ./pingerang ./cmd/web
 
 FROM chromedp/headless-shell:latest AS build-release-stage
 WORKDIR /
-COPY --from=build-stage /app /
+COPY --from=build-stage /app/pingerang /
+COPY --from=build-stage /app/ui ./ui
 
 RUN apt-get update && apt-get install -y \
     xvfb \
