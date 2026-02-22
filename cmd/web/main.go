@@ -26,9 +26,13 @@ type application struct {
 }
 
 func main() {
+	mysqlConnDsn := fmt.Sprintf("%s:%s@tcp(mysql:3306)/pingerang?parseTime=true",
+		os.Getenv("MSUSER"),
+		os.Getenv("MSPASSWORD"),
+	)
 	addr := flag.String("addr", ":4000", "HTTP network address")
 
-	dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
+	//dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
 	// dsn := os.Getenv("DSN")
 	flag.Parse()
 
@@ -48,7 +52,7 @@ func main() {
 		Level: slog.LevelInfo,
 	}))
 
-	db, err := openDB(*dsn)
+	db, err := openDB(mysqlConnDsn)
 	if err != nil {
 		fmt.Printf("Failed to open database: %s\n", err.Error())
 		os.Exit(1)
@@ -78,7 +82,7 @@ func main() {
 	go app.getAllAndCompareRoutine()
 
 	srv := &http.Server{
-		Addr: *addr,
+		Addr:    *addr,
 		Handler: app.routes(),
 	}
 	logger.Info("starting server", "addr", *addr)

@@ -1,0 +1,29 @@
+services:
+  app:
+    image: pingerang:multistage 
+    command: sh -c "xvfb-run -a ./pingerang"
+    ports:
+      - 4000:4000
+    environment:
+      MSUSER: web
+      MSPASSWORD: Soul2001
+    depends_on:
+      mysql:
+        condition: service_healthy  # Waits for the healthcheck to pass
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - pingerang-mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: pingerang
+      MYSQL_USER: web
+      MYSQL_PASSWORD: Soul2001
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+volumes:
+  pingerang-mysql-data:
