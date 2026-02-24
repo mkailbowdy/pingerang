@@ -33,8 +33,12 @@ func main() {
 	addr := flag.String("addr", ":4000", "HTTP network address")
 
 	//dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
+
 	// dsn := os.Getenv("DSN")
 	flag.Parse()
+	if os.Getenv("MSUSER") == "" || os.Getenv("MSPASSWORD") == "" {
+		mysqlConnDsn = "web:Soul2001@/pingerang?parseTime=true"
+	}
 
 	// logger := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
 	// 	AddSource: true,
@@ -51,11 +55,21 @@ func main() {
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 		Level: slog.LevelInfo,
 	}))
+	var db *sql.DB
+	var err error
+	for i := 1; i <= 10; i++ {
+		db, err = openDB(mysqlConnDsn)
+		if err != nil {
+			if i == 10 {
+				fmt.Printf("Failed to open database: %s\n", err.Error())
+				os.Exit(1)
+			}
+			fmt.Printf("Retrying connection to database")
+			time.Sleep(1 * time.Second)
+			continue
+		}
 
-	db, err := openDB(mysqlConnDsn)
-	if err != nil {
-		fmt.Printf("Failed to open database: %s\n", err.Error())
-		os.Exit(1)
+		break
 	}
 	defer db.Close()
 
@@ -70,6 +84,7 @@ func main() {
 	sessionManager := scs.New()
 	sessionManager.Store = mysqlstore.New(db)
 	sessionManager.Lifetime = 12 * time.Hour
+	sessionManager.Cookie.Secure = true
 
 	app := &application{
 		sites:          &models.SiteModel{DB: db},
@@ -82,12 +97,13 @@ func main() {
 	go app.getAllAndCompareRoutine()
 
 	srv := &http.Server{
-		Addr:    *addr,
-		Handler: app.routes(),
+		Addr:     *addr,
+		Handler:  app.routes(),
+		ErrorLog: slog.NewLogLogger(logger.Handler(), slog.LevelError),
 	}
-	logger.Info("starting server", "addr", *addr)
+	logger.Info("starting server", "addr", srv.Addr)
 	fmt.Println("Listening and serving requests!")
-	err = srv.ListenAndServe()
+	err = srv.ListenAndServeTLS("./tls/cert.pem", "./tls/key.pem")
 	logger.Error(err.Error())
 	os.Exit(1)
 }
