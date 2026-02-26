@@ -5,8 +5,8 @@ services:
     ports:
       - 4000:4000
     environment:
-      MSUSER: web
-      MSPASSWORD: Soul2001
+      - MYSQL_USER=${MYSQL_USER:-web}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:?database password not set}
     depends_on:
       mysql:
         condition: service_healthy  # Waits for the healthcheck to pass
@@ -16,10 +16,10 @@ services:
       - pingerang-mysql-data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: pingerang
-      MYSQL_USER: web
-      MYSQL_PASSWORD: Soul2001
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:?database password not set}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-pingerang}
+      - MYSQL_USER=${MYSQL_USER:-web}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:?database password not set}
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret"]
       interval: 3s

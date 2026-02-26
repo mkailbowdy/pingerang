@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"database/sql"
 	"flag"
 	"fmt"
@@ -27,8 +28,8 @@ type application struct {
 
 func main() {
 	mysqlConnDsn := fmt.Sprintf("%s:%s@tcp(mysql:3306)/pingerang?parseTime=true",
-		os.Getenv("MSUSER"),
-		os.Getenv("MSPASSWORD"),
+		os.Getenv("MYSQL_USER"),
+		os.Getenv("MYSQL_PASSWORD"),
 	)
 	addr := flag.String("addr", ":4000", "HTTP network address")
 
@@ -36,7 +37,7 @@ func main() {
 
 	// dsn := os.Getenv("DSN")
 	flag.Parse()
-	if os.Getenv("MSUSER") == "" || os.Getenv("MSPASSWORD") == "" {
+	if os.Getenv("MYSQL_USER") == "" || os.Getenv("MYSQL_PASSWORD") == "" {
 		mysqlConnDsn = "web:Soul2001@/pingerang?parseTime=true"
 	}
 
@@ -94,12 +95,19 @@ func main() {
 		sessionManager: sessionManager,
 	}
 
+	tlsConfig := &tls.Config{
+		CurvePreferences: []tls.CurveID{tls.X25519, tls.CurveP256},
+	}
 	go app.getAllAndCompareRoutine()
 
 	srv := &http.Server{
-		Addr:     *addr,
-		Handler:  app.routes(),
-		ErrorLog: slog.NewLogLogger(logger.Handler(), slog.LevelError),
+		Addr:         *addr,
+		Handler:      app.routes(),
+		ErrorLog:     slog.NewLogLogger(logger.Handler(), slog.LevelError),
+		TLSConfig:    tlsConfig,
+		IdleTimeout:  time.Minute,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
 	}
 	logger.Info("starting server", "addr", srv.Addr)
 	fmt.Println("Listening and serving requests!")

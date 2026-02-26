@@ -29,7 +29,8 @@ FROM chromedp/headless-shell:latest AS build-release-stage
 WORKDIR /
 COPY --from=build-stage /app/pingerang /
 COPY --from=build-stage /app/ui ./ui
-
+COPY --from=build-stage /app/tls ./tls
+COPY --from=build-stage /app/.env /
 RUN apt-get update && apt-get install -y \
     xvfb \
     xauth \
