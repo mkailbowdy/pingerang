@@ -20,6 +20,7 @@ import (
 
 type application struct {
 	sites          *models.SiteModel
+	users          *models.UserModel
 	logger         *slog.Logger
 	templateCache  map[string]*template.Template
 	formDecoder    *form.Decoder
@@ -36,6 +37,7 @@ func main() {
 	//dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
 
 	// dsn := os.Getenv("DSN")
+
 	flag.Parse()
 	if os.Getenv("MYSQL_USER") == "" || os.Getenv("MYSQL_PASSWORD") == "" {
 		mysqlConnDsn = "web:Soul2001@/pingerang?parseTime=true"
@@ -46,13 +48,16 @@ func main() {
 	// }))
 
 	// file, err := os.OpenFile(
-	// 	"app.log",
-	// 	os.O_APPEND|os.O_CREATE|os.O_WRONLY,
-	// 	0644,
+	//
+	//	"app.log",
+	//	os.O_APPEND|os.O_CREATE|os.O_WRONLY,
+	//	0644,
+	//
 	// )
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
+	//
+	//	if err != nil {
+	//		log.Fatal(err)
+	//	}
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 		Level: slog.LevelInfo,
 	}))
@@ -89,6 +94,7 @@ func main() {
 
 	app := &application{
 		sites:          &models.SiteModel{DB: db},
+		users:          &models.UserModel{DB: db},
 		logger:         logger,
 		templateCache:  templateCache,
 		formDecoder:    formDecoder,

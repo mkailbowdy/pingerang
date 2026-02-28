@@ -1,3 +1,5 @@
 .idea/
 app.logtls/
 .env
+app.log
+tls/
