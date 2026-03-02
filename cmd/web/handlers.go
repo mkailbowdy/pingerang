@@ -59,9 +59,9 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Check NotBlank and ValidUrl
-	form.Validator.CheckField(form.Validator.NotBlank(validUrl.String()), "url", "This field cannot be blank.")
-	form.Validator.CheckField(form.Validator.ValidUrl(*validUrl), "url", "This must be an absolute link that begins with http or https")
-	form.Validator.CheckField(form.Validator.NotBlank(form.Selector), "selector", "This field cannot be blank")
+	form.Validator.CheckField(validator.NotBlank(validUrl.String()), "url", "This field cannot be blank.")
+	form.Validator.CheckField(validator.ValidUrl(*validUrl), "url", "This must be an absolute link that begins with http or https")
+	form.Validator.CheckField(validator.NotBlank(form.Selector), "selector", "This field cannot be blank")
 	if !form.Validator.Valid() {
 		data := app.newTemplateData(r)
 		data.Form = form
@@ -236,7 +236,41 @@ func (app *application) userSignup(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) userSignupPost(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Create new user...")
+	var form userSignupForm
+
+	err := app.decodePostForm(r, &form)
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+	form.CheckField(validator.NotBlank(form.Name), "name", "This field cannot be blank.")
+	form.CheckField(validator.NotBlank(form.Email), "email", "This field cannot be blank.")
+	form.CheckField(validator.Matches(form.Email, validator.EmailRX), "email", "This field must be a valid email.")
+	form.CheckField(validator.NotBlank(form.Password), "password", "This field cannot be blank.")
+	form.CheckField(validator.MinChars(form.Password, 8), "password", "This field must be a minimum of 8 characters.")
+	if !form.Valid() {
+		data := app.newTemplateData(r)
+		data.Form = form
+		app.render(w, r, http.StatusUnprocessableEntity, "signup.tmpl.html", data)
+		return
+	}
+	// Placeholder Response
+	err = app.users.Insert(form.Name, form.Email, form.Password)
+	if err != nil {
+		if errors.Is(err, models.ErrDuplicateEmail) {
+			form.AddFieldError("email", "Email Address already in use.")
+			data := app.newTemplateData(r)
+			data.Form = form
+			fmt.Printf("%v", form)
+			app.render(w, r, http.StatusUnprocessableEntity, "signup.tmpl.html", data)
+		} else {
+			app.serverError(w, r, err)
+		}
+		return
+	}
+
+	app.sessionManager.Put(r.Context(), "flash", "Your signup was successful. Please log in.")
+	http.Redirect(w, r, "/user/login", http.StatusSeeOther)
 }
 func (app *application) userLogin(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Display a login form...")

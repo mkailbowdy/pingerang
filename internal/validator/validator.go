@@ -1,12 +1,14 @@
 package validator
 
 import (
+	"net/url"
+	"regexp"
 	"slices"
 	"strings"
 	"unicode/utf8"
-	"net/url"
-
 )
+
+var EmailRX = regexp.MustCompile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
 
 type Validator struct {
 	FieldErrors map[string]string
@@ -35,11 +37,11 @@ func (v *Validator) CheckField(ok bool, key, message string) {
 	}
 }
 
-func (v *Validator) NotBlank(value string) bool {
+func NotBlank(value string) bool {
 	return strings.TrimSpace(value) != ""
 }
 
-func (v *Validator) MaxChars(value string, n int) bool {
+func MaxChars(value string, n int) bool {
 	return utf8.RuneCountInString(value) <= n
 }
 
@@ -47,11 +49,19 @@ func PermittedValue[T comparable](value T, permittedValues ...T) bool {
 	return slices.Contains(permittedValues, value)
 }
 
-func (v *Validator) ValidUrl(userUrl url.URL) bool {
-	if (userUrl.Scheme == "" || userUrl.Host == "") {
+func ValidUrl(userUrl url.URL) bool {
+	if userUrl.Scheme == "" || userUrl.Host == "" {
 		return false
 	} else if userUrl.Scheme != "http" && userUrl.Scheme != "https" {
 		return false
 	}
 	return true
+}
+
+func MinChars(value string, n int) bool {
+	return utf8.RuneCountInString(value) >= n
+}
+
+func Matches(value string, rx *regexp.Regexp) bool {
+	return rx.MatchString(value)
 }
