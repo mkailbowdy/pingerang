@@ -10,12 +10,13 @@ import (
 )
 
 type templateData struct {
-	CurrentYear int
-	Page        string
-	Site        models.Site
-	Sites       []models.Site
-	Form        any
-	Flash       string
+	CurrentYear     int
+	Page            string
+	Site            models.Site
+	Sites           []models.Site
+	Form            any
+	Flash           string
+	IsAuthenticated bool
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {
@@ -46,9 +47,10 @@ func newTemplateCache() (map[string]*template.Template, error) {
 
 func (app *application) newTemplateData(r *http.Request) templateData {
 	return templateData{
-		CurrentYear: time.Now().Year(),
-		Page:        r.RequestURI,
-		Flash:       app.sessionManager.PopString(r.Context(), "flash"),
+		CurrentYear:     time.Now().Year(),
+		Page:            r.RequestURI,
+		Flash:           app.sessionManager.PopString(r.Context(), "flash"),
+		IsAuthenticated: app.isAuthenticated(r),
 	}
 }
 
