@@ -285,9 +285,65 @@ func (app *application) userLogin(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, http.StatusOK, "login.tmpl.html", data)
 }
 func (app *application) userLoginPost(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Authenticate and login the user...")
+	var form userLoginForm
+	err := app.decodePostForm(r, &form)
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+	form.CheckField(validator.NotBlank(form.Email), "email", " This field cannot be blank.")
+	form.CheckField(validator.Matches(form.Email, validator.EmailRX), "email", "This field must be a valid email.")
+	form.CheckField(validator.NotBlank(form.Password), "password", " This field cannot be blank.")
+
+	if !form.Valid() {
+		data := app.newTemplateData(r)
+		data.Form = form
+		app.render(w, r, http.StatusUnprocessableEntity, "login.tmpl.html", data)
+		return
+	}
+
+	// Check if the credentials are valid. If not, add generic non-field error message and redisplay login screen
+
+	id, err := app.users.Authenticate(form.Email, form.Password)
+	if err != nil {
+		if errors.Is(err, models.ErrInvalidCredentials) {
+			form.AddNonFieldErrors("Email or password is incorrect.")
+			data := app.newTemplateData(r)
+			data.Form = form
+			app.render(w, r, http.StatusUnprocessableEntity, "login.tmpl.html", data)
+		} else {
+			app.serverError(w, r, err)
+		}
+		return
+	}
+	// Use the RenewToken() method on the current session to change the session
+	// ID. It's good practice to generate a new session ID when the
+	// authentication state or privilege levels change for the user (e.g. login
+	// and logout operations).
+	err = app.sessionManager.RenewToken(r.Context())
+	if err != nil {
+		app.serverError(w, r, err)
+	}
+	// Add the ID of the current user to the session, so that they are now
+	// 'logged in'.
+	app.sessionManager.Put(r.Context(), "authenticateUserID", id)
+	http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
 }
 
 func (app *application) userLogoutPost(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Logout the user...")
+	// Use the RenewToken() method on the current session to change the session
+	// ID again.`
+	err := app.sessionManager.RenewToken(r.Context())
+	if err != nil {
+		app.serverError(w, r, err)
+		return
+	}
+	// Remove the authenticatedUserID from the session data so that the user is
+	// 'logged out'.
+	app.sessionManager.Remove(r.Context(), "authenticatedUserID")
+	// Add a flash message to the session to confirm to the user that they've been
+	// logged out.
+	app.sessionManager.Put(r.Context(), "flash", "You've been successfully logged out.")
+
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
