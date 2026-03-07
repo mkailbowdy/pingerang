@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/justinas/nosurf"
 	"github.com/mkailbowdy/internal/models"
 )
 
@@ -17,6 +18,7 @@ type templateData struct {
 	Form            any
 	Flash           string
 	IsAuthenticated bool
+	CSRFToken       string
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {
@@ -51,6 +53,7 @@ func (app *application) newTemplateData(r *http.Request) templateData {
 		Page:            r.RequestURI,
 		Flash:           app.sessionManager.PopString(r.Context(), "flash"),
 		IsAuthenticated: app.isAuthenticated(r),
+		CSRFToken:       nosurf.Token(r),
 	}
 }
 
