@@ -1,36 +1,19 @@
 package main
 
 import (
-	"bytes"
-	"github.com/mkailbowdy/internal/assert"
-	"io"
 	"net/http"
-	"net/http/httptest"
 	"testing"
+
+	"github.com/mkailbowdy/internal/assert"
 )
 
 func TestPing(t *testing.T) {
-	// Create a Response Recorder
-	rr := httptest.NewRecorder()
+	app := newTestApplication(t)
 
-	req, err := http.NewRequest(http.MethodGet, "/", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
+	ts := newTestServer(t, app.routes())
+	defer ts.Close()
 
-	ping(rr, req)
-
-	res := rr.Result()
-	defer res.Body.Close()
-
-	// Check if the status code is 200
-	assert.Equal(t, res.StatusCode, http.StatusOK)
-
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		t.Fatal(err)
-	}
-	body = bytes.TrimSpace(body)
-	// Check if the body of the request is OK
-	assert.Equal(t, string(body), "OK")
+	res := ts.get(t, "/ping")
+	assert.Equal(t, res.status, http.StatusOK)
+	assert.Equal(t, res.body, "OK")
 }
