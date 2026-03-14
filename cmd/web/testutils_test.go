@@ -2,19 +2,40 @@ package main
 
 import (
 	"bytes"
+	"github.com/alexedwards/scs/v2"    // New import
+	"github.com/go-playground/form/v4" // New import
+	"github.com/mkailbowdy/internal/models/mocks"
 	"io"
 	"log/slog"
 	"net/http"
 	"net/http/cookiejar"
 	"net/http/httptest"
 	"testing"
+	"time"
 )
 
 // Create a newTestApplication helper which returns an instance of our
 // application struct containing mocked dependencies.
 func newTestApplication(t *testing.T) *application {
+	templateCache, err := newTemplateCache()
+	if err != nil {
+		t.Fatal(err)
+	}
+	formDecoder := form.NewDecoder()
+	// And a session manager instance. Note that we use the same settings as
+	// production, except that we *don't* set a Store for the session manager.
+	// If no store is set, the SCS package will default to using a transient
+	// in-memory store, which is ideal for testing purposes.
+	sessionManager := scs.New()
+	sessionManager.Lifetime = 12 * time.Hour
+	sessionManager.Cookie.Secure = true
 	return &application{
-		logger: slog.New(slog.DiscardHandler),
+		logger:         slog.New(slog.DiscardHandler),
+		sites:          &mocks.SiteModel{}, // Use the mock.
+		users:          &mocks.UserModel{}, // Use the mock.
+		templateCache:  templateCache,
+		formDecoder:    formDecoder,
+		sessionManager: sessionManager,
 	}
 }
 
@@ -84,4 +105,3 @@ func (ts *testServer) get(t *testing.T, urlPath string) testResponse {
 		body:    string(bytes.TrimSpace(body)),
 	}
 }
-

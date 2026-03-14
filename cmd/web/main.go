@@ -19,8 +19,8 @@ import (
 )
 
 type application struct {
-	sites          *models.SiteModel
-	users          *models.UserModel
+	sites          models.SiteModelInterface
+	users          models.UserModelInterface
 	logger         *slog.Logger
 	templateCache  map[string]*template.Template
 	formDecoder    *form.Decoder

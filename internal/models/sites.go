@@ -1,12 +1,17 @@
 package models
 
-
 import (
 	"database/sql"
 	"errors"
 	"fmt"
 	"time"
 )
+
+type SiteModelInterface interface {
+	Insert(url, urlhash, pagehash, selector string) (int, error)
+	Get(url string) (Site, error)
+	GetAll() ([]Site, error)
+}
 
 type Site struct {
 	ID        int
