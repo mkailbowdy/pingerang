@@ -34,3 +34,10 @@ func (m *SiteModel) Get(url string) (models.Site, error) {
 func (m *SiteModel) GetAll() ([]models.Site, error) {
 	return []models.Site{}, nil
 }
+
+func (m *SiteModel) MarkAsChanged(urlhash string) error {
+	return nil
+}
+func (m *SiteModel) Update(urlhash, pagehash string) error {
+	return nil
+}

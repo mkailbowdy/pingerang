@@ -11,6 +11,8 @@ type SiteModelInterface interface {
 	Insert(url, urlhash, pagehash, selector string) (int, error)
 	Get(url string) (Site, error)
 	GetAll() ([]Site, error)
+	MarkAsChanged(urlhash string) error
+	Update(urlhash, pagehash string) error
 }
 
 type Site struct {

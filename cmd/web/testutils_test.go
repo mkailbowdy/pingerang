@@ -5,11 +5,13 @@ import (
 	"github.com/alexedwards/scs/v2"    // New import
 	"github.com/go-playground/form/v4" // New import
 	"github.com/mkailbowdy/internal/models/mocks"
+	"html"
 	"io"
 	"log/slog"
 	"net/http"
 	"net/http/cookiejar"
 	"net/http/httptest"
+	"regexp"
 	"testing"
 	"time"
 )
@@ -104,4 +106,21 @@ func (ts *testServer) get(t *testing.T, urlPath string) testResponse {
 		cookies: res.Cookies(),
 		body:    string(bytes.TrimSpace(body)),
 	}
+}
+
+func extractCSRFToken(t *testing.T, body string) string {
+	// Define a regular expression which captures the CSRF token value from the
+	// HTML for our user signup page.
+	csrfTokenRX := regexp.MustCompile(`<input type="hidden" name="csrf_token" value="(.+)" />`)
+
+	// Use the FindStringSubmatch method to extract the token from the HTML body.
+	// Note that this returns a slice with the entire matched pattern in the
+	// first position, and the values of any captured data in the subsequent
+	// positions.
+	matches := csrfTokenRX.FindStringSubmatch(body)
+	if len(matches) < 2 {
+		t.Fatal("no csrf token found in body")
+	}
+
+	return html.UnescapeString(matches[1])
 }
