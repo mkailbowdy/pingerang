@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"net/http"
 	"net/url"
+	"strconv"
 	"time"
 
 	"github.com/mkailbowdy/internal/models"
@@ -96,6 +97,18 @@ func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request
 	_, pagehash := driveHash(s.Url, s.Selector)
 
 	err = app.compareHashes(s.Url, pagehash)
+	if err != nil {
+		app.logger.Error(err.Error())
+	}
+}
+
+func (app *application) removeSite(w http.ResponseWriter, r *http.Request) {
+	id, err := strconv.Atoi(r.PathValue("id"))
+	if id <= 0 || err != nil {
+		app.logger.Error(err.Error())
+		return
+	}
+	err = app.sites.Delete(id)
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
