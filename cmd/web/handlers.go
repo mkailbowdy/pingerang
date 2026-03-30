@@ -86,6 +86,7 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
 }
 
+/*
 func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request) {
 	form := app.getUrlSelectorPostForm(w, r)
 	s, err := app.sites.Get(form.Url)
@@ -96,6 +97,16 @@ func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request
 	_, pagehash := driveHash(s.Url, s.Selector)
 
 	err = app.compareHashes(s.Url, pagehash)
+	if err != nil {
+		app.logger.Error(err.Error())
+	}
+}
+*/
+
+func (app *application) getAndComparePost(s models.Site) {
+	_, pagehash := driveHash(s.Url, s.Selector)
+
+	err := app.compareHashes(s.Url, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
@@ -114,9 +125,9 @@ func (app *application) getAllAndCompareRoutine() {
 			app.logger.Error(err.Error())
 			return
 		}
+
 		for _, s := range sites {
-			_, pagehash := driveHash(s.Url, s.Selector)
-			err = app.compareHashes(s.Url, pagehash)
+			go app.getAndComparePost(s)
 		}
 	}
 }
@@ -147,6 +158,7 @@ func (app *application) compareHashes(url string, pagehash string) error {
 
 	return nil
 }
+
 func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	fmt.Printf("Updating hashes for ID: %s\n", id)

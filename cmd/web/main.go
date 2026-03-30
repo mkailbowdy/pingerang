@@ -104,6 +104,7 @@ func main() {
 	tlsConfig := &tls.Config{
 		CurvePreferences: []tls.CurveID{tls.X25519, tls.CurveP256},
 	}
+
 	go app.getAllAndCompareRoutine()
 
 	srv := &http.Server{

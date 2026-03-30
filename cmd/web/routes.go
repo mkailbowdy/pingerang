@@ -12,7 +12,8 @@ func (app *application) routes() http.Handler {
 	mux.Handle("GET /static/", http.FileServerFS(ui.Files))
 	mux.HandleFunc("GET /ping", ping)
 
-	dynamic := alice.New(app.sessionManager.LoadAndSave, preventCSRF, app.authenticate)
+	// dynamic := alice.New(app.sessionManager.LoadAndSave, preventCSRF, app.authenticate)
+	dynamic := alice.New(app.sessionManager.LoadAndSave, app.authenticate)
 
 	protected := dynamic.Append(app.requireAuthentication)
 
@@ -20,7 +21,7 @@ func (app *application) routes() http.Handler {
 	mux.Handle("GET /dashboard", protected.ThenFunc(app.dashboard))
 	mux.Handle("GET /url/create", protected.ThenFunc(app.createUrl))
 	mux.Handle("POST /url/create", protected.ThenFunc(app.createUrlPost))
-	mux.Handle("POST /url/compare", protected.ThenFunc(app.getAndComparePost))
+	//	mux.Handle("POST /url/compare", protected.ThenFunc(app.getAndComparePost))
 	mux.Handle("POST /url/{id}", protected.ThenFunc(app.showButton))
 	mux.Handle("PATCH /url/{id}", protected.ThenFunc(app.updateHashesPost))
 
