@@ -13,6 +13,7 @@ type SiteModelInterface interface {
 	GetAll() ([]Site, error)
 	MarkAsChanged(urlhash string) error
 	Update(urlhash, pagehash string) error
+	Delete(id int) error
 }
 
 type Site struct {
@@ -77,6 +78,16 @@ func (m *SiteModel) Update(urlhash, pagehash string) error {
 		return err
 	}
 	fmt.Println("Site is now marked as No Changes and pagehash has been updated.")
+	return nil
+}
+
+func (m *SiteModel) Delete(id int) error {
+	stmt := `DELETE FROM sites WHERE id = ?`
+	_, err := m.DB.Exec(stmt, id)
+	if err != nil {
+		return err
+	}
+	fmt.Println("Url site removed successfully")
 	return nil
 }
 

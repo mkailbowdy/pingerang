@@ -24,6 +24,7 @@ func (app *application) routes() http.Handler {
 	//	mux.Handle("POST /url/compare", protected.ThenFunc(app.getAndComparePost))
 	mux.Handle("POST /url/{id}", protected.ThenFunc(app.showButton))
 	mux.Handle("PATCH /url/{id}", protected.ThenFunc(app.updateHashesPost))
+	mux.Handle("DELETE /url/{id}", protected.ThenFunc(app.removeSite))
 
 	// User authentication related routes
 	mux.Handle("GET /user/signup", dynamic.ThenFunc(app.userSignup))

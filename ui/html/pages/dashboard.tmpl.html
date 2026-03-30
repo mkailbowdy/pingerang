@@ -25,8 +25,9 @@
             </svg>
           </a>
         </p>
-        {{if .Changed}} {{template "change" .}} {{else}} {{template "nochange"
-        .}} {{end}}
+        <p class="text-red-500" hx-delete="/url/{{.ID}}">DELETE</p>
+        {{if .Changed}} {{template "change" .}} {{else}} {{template
+        "nochange".}} {{end}}
       </div>
     </div>
     <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
@@ -43,4 +44,3 @@
 {{else}}
 <p>There's nothing to see here yet!</p>
 {{end}} {{end}}
-
