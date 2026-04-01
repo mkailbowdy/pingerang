@@ -2,3 +2,4 @@
 app.logtls/
 app.log
 DockerfileTEST
+.env

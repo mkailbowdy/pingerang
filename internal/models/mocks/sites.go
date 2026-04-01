@@ -41,3 +41,7 @@ func (m *SiteModel) MarkAsChanged(urlhash string) error {
 func (m *SiteModel) Update(urlhash, pagehash string) error {
 	return nil
 }
+
+func (m *SiteModel) Delete(id int) error {
+	return nil
+}
