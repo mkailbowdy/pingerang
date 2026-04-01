@@ -27,10 +27,11 @@ RUN go build -o ./pingerang ./cmd/web
 
 FROM chromedp/headless-shell:latest AS build-release-stage
 WORKDIR /
+
+# copy the binary into the root
 COPY --from=build-stage /app/pingerang /
+# copy the files that the binary needs
 COPY --from=build-stage /app/ui ./ui
-COPY --from=build-stage /app/tls ./tls
-COPY --from=build-stage /app/.env /
 RUN apt-get update && apt-get install -y \
     xvfb \
     xauth \

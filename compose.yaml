@@ -1,6 +1,6 @@
 services:
   app:
-    image: pingerang:multistage 
+    image: fortylashes/pingerang:latest 
     command: sh -c "xvfb-run -a ./pingerang"
     ports:
       - 4000:4000
