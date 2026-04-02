@@ -34,7 +34,6 @@ func main() {
 	addr := flag.String("addr", ":4000", "HTTP network address")
 
 	//dsn := flag.String("dsn", "web:Soul2001@/pingerang?parseTime=true", "MySQL data source name")
-
 	// dsn := os.Getenv("DSN")
 
 	flag.Parse()
