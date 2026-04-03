@@ -165,6 +165,7 @@ func (app *application) compareHashes(url string, pagehash string) error {
 	// Update this snippets Changed column to true (1 in mysql)
 	err = app.sites.MarkAsChanged(s.Urlhash)
 	if err != nil {
+		fmt.Printf("compareHashes error: %s", err.Error())
 		app.logger.Error(err.Error())
 	}
 	// sendUpdateMail(s.Url)
