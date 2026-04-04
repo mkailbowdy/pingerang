@@ -36,10 +36,12 @@ func (m *SiteModel) Insert(url, urlhash, pagehash, selector string) (int, error)
 
 	result, err := m.DB.Exec(stmt, url, urlhash, pagehash, selector)
 	if err != nil {
+		fmt.Printf("DB Insert Error: %s", err.Error())
 		return 0, err
 	}
 	id, err := result.LastInsertId()
 	if err != nil {
+		fmt.Printf("Last Insert ID Error: %s", err.Error())
 		return 0, err
 	}
 	fmt.Println("DB insert complete!")
@@ -65,6 +67,7 @@ func (m *SiteModel) MarkAsChanged(urlhash string) error {
 	stmt := `UPDATE sites SET changed = ? WHERE urlhash = ?`
 	_, err := m.DB.Exec(stmt, 1, urlhash)
 	if err != nil {
+		fmt.Printf("MarkAsChanged Error: %s", err.Error())
 		return err
 	}
 	fmt.Println("Site is now marked as Changed.")
@@ -75,6 +78,7 @@ func (m *SiteModel) Update(urlhash, pagehash string) error {
 	stmt := `UPDATE sites SET pagehash = ?, changed = ? WHERE urlhash = ?`
 	_, err := m.DB.Exec(stmt, pagehash, 0, urlhash)
 	if err != nil {
+		fmt.Printf("DB Update Error: %s", err.Error())
 		return err
 	}
 	fmt.Println("Site is now marked as No Changes and pagehash has been updated.")
@@ -95,6 +99,7 @@ func (m *SiteModel) GetAll() ([]Site, error) {
 	stmt := `SELECT id, url, created, urlhash, pagehash, selector, changed, updated_at FROM sites`
 	rows, err := m.DB.Query(stmt)
 	if err != nil {
+		fmt.Printf("GetAll errorError: %s", err.Error())
 		return nil, err
 	}
 	defer rows.Close()
@@ -104,6 +109,7 @@ func (m *SiteModel) GetAll() ([]Site, error) {
 		var s Site
 		err = rows.Scan(&s.ID, &s.Url, &s.Created, &s.Urlhash, &s.Pagehash, &s.Selector, &s.Changed, &s.UpdatedAt)
 		if err != nil {
+			fmt.Printf("GetAll Error: %s", err.Error())
 			return nil, err
 		}
 		sites = append(sites, s)

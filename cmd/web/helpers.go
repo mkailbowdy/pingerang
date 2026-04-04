@@ -57,7 +57,7 @@ func driveHash(url, selector string) (string, string) {
 	)
 
 	if err != nil {
-		log.Println("something is wrong:", err)
+		fmt.Printf("driveHash method: %s", err.Error())
 		return "", ""
 	}
 

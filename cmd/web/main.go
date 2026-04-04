@@ -41,21 +41,6 @@ func main() {
 		mysqlConnDsn = "web:Soul2001@/pingerang?parseTime=true"
 	}
 
-	// logger := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
-	// 	AddSource: true,
-	// }))
-
-	// file, err := os.OpenFile(
-	//
-	//	"app.log",
-	//	os.O_APPEND|os.O_CREATE|os.O_WRONLY,
-	//	0644,
-	//
-	// )
-	//
-	//	if err != nil {
-	//		log.Fatal(err)
-	//	}
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
 		Level: slog.LevelInfo,
 	}))
