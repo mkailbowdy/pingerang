@@ -465,9 +465,6 @@
       border-color: color-mix(in oklab, var(--color-gray-900) 10%, transparent);
     }
   }
-  .border-green-500 {
-    border-color: var(--color-green-500);
-  }
   .border-indigo-600 {
     border-color: var(--color-indigo-600);
   }
@@ -1054,16 +1051,6 @@
       }
     }
   }
-  .dark\:px-5 {
-    @media (prefers-color-scheme: dark) {
-      padding-inline: calc(var(--spacing) * 5);
-    }
-  }
-  .dark\:text-gray-50 {
-    @media (prefers-color-scheme: dark) {
-      color: var(--color-gray-50);
-    }
-  }
   .dark\:text-gray-100 {
     @media (prefers-color-scheme: dark) {
       color: var(--color-gray-100);
@@ -1084,11 +1071,6 @@
       color: var(--color-green-400);
     }
   }
-  .dark\:text-green-500 {
-    @media (prefers-color-scheme: dark) {
-      color: var(--color-green-500);
-    }
-  }
   .dark\:text-indigo-300 {
     @media (prefers-color-scheme: dark) {
       color: var(--color-indigo-300);
@@ -1097,11 +1079,6 @@
   .dark\:text-indigo-400 {
     @media (prefers-color-scheme: dark) {
       color: var(--color-indigo-400);
-    }
-  }
-  .dark\:text-red-500 {
-    @media (prefers-color-scheme: dark) {
-      color: var(--color-red-500);
     }
   }
   .dark\:text-white {
@@ -1194,15 +1171,6 @@
       &:hover {
         @media (hover: hover) {
           color: var(--color-gray-200);
-        }
-      }
-    }
-  }
-  .dark\:hover\:text-green-200 {
-    @media (prefers-color-scheme: dark) {
-      &:hover {
-        @media (hover: hover) {
-          color: var(--color-green-200);
         }
       }
     }
