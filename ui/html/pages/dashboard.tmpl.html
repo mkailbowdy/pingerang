@@ -6,7 +6,9 @@
   <li class="flex justify-between gap-x-6 py-5" id="site{{.ID}}">
     <div class="flex min-w-0 gap-x-4">
       <div class="min-w-0 flex-auto">
-        <p class="text-sm/6 font-semibold text-gray-500 dark:text-white">
+        <div
+          class="flex items-center text-sm/6 font-semibold text-gray-500 dark:text-white"
+        >
           {{.Url}}
           <a href="{{.Url}}" class="text-amber-500"
             ><svg
@@ -24,28 +26,28 @@
               />
             </svg>
           </a>
-        </p>
-        <p
-          class="text-red-500"
-          hx-delete="/url/{{.ID}}"
-          hx-swap="outerhtml"
-          hx-target="#site{{.ID}}"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6"
+          <div
+            class="text-red-500"
+            hx-delete="/url/{{.ID}}"
+            hx-swap="outerhtml"
+            hx-target="#site{{.ID}}"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18 18 6M6 6l12 12"
-            />
-          </svg>
-        </p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6 inline-block ml-2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+        </div>
         {{if .Changed}} {{template "change" .}} {{else}} {{template
         "nochange".}} {{end}}
       </div>
