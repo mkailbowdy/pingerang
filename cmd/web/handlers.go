@@ -129,6 +129,7 @@ func (app *application) getAllAndCompareRoutine() {
 	// To Do: Run at the 50th minute of every hour.(e.g. 10:50, 11:50,...)
 	// Once an hour
 	ticker := time.NewTicker(60 * time.Minute)
+
 	defer ticker.Stop()
 	for range ticker.C {
 		fmt.Printf("Running: getAllAndCompareRoutine")
@@ -195,6 +196,7 @@ func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request)
 	err = app.sites.Update(urlhash, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
+		return
 	}
 
 	files := []string{

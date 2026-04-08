@@ -1,6 +1,6 @@
 {{define "title"}}Create new url to follow{{end}} {{define "main"}}
 <div class="bg-white dark:bg-gray-900 dark:scheme-dark">
-  <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
     <div class="mx-auto max-w-2xl">
       <form action="/url/create" method="POST">
         <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
@@ -90,4 +90,3 @@
 </div>
 
 {{end}}
-

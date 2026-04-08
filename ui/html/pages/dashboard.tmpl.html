@@ -9,7 +9,9 @@
         <div
           class="flex items-center text-sm/6 font-semibold text-gray-500 dark:text-white"
         >
-          {{.Url}}
+          <div class="min-w-0 flex-1">
+            <p class="line-clamp-2 break-words">{{.Url}}</p>
+          </div>
           <a href="{{.Url}}" class="text-amber-500"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
