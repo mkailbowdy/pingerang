@@ -4,17 +4,16 @@ import (
 	"database/sql"
 	"flag"
 	"fmt"
-	"html/template"
-	"log/slog"
-	"net/http"
-	"os"
-	"time"
-
 	"github.com/alexedwards/scs/mysqlstore" // New import
 	"github.com/alexedwards/scs/v2"         // New import
 	"github.com/go-playground/form/v4"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mkailbowdy/internal/models"
+	"html/template"
+	"log/slog"
+	"net/http"
+	"os"
+	"time"
 )
 
 type application struct {
@@ -72,7 +71,7 @@ func main() {
 
 	sessionManager := scs.New()
 	sessionManager.Store = mysqlstore.New(db)
-	sessionManager.Lifetime = 12 * time.Hour
+	sessionManager.Lifetime = 24 * time.Hour
 	sessionManager.Cookie.Secure = true
 
 	app := &application{
@@ -90,9 +89,9 @@ func main() {
 		Addr:         *addr,
 		Handler:      app.routes(),
 		ErrorLog:     slog.NewLogLogger(logger.Handler(), slog.LevelError),
-		IdleTimeout:  time.Minute,
-		ReadTimeout:  30 * time.Second,
-		WriteTimeout: 60 * time.Second,
+		IdleTimeout:  5 * time.Minute,
+		ReadTimeout:  30 * time.Minute,
+		WriteTimeout: 60 * time.Minute,
 	}
 	logger.Info("starting server", "addr", srv.Addr)
 	fmt.Println("Listening and serving requests!")

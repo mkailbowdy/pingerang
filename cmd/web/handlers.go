@@ -128,11 +128,11 @@ func (app *application) removeSite(w http.ResponseWriter, r *http.Request) {
 func (app *application) getAllAndCompareRoutine() {
 	// To Do: Run at the 50th minute of every hour.(e.g. 10:50, 11:50,...)
 	// Once an hour
-	ticker := time.NewTicker(60 * time.Minute)
+	ticker := time.NewTicker(5 * time.Minute)
 
 	defer ticker.Stop()
 	for range ticker.C {
-		fmt.Printf("Running: getAllAndCompareRoutine")
+		fmt.Printf("\nRunning: getAllAndCompareRoutine\n")
 		// Get all the urlhash from database and store in a []string
 		sites, err := app.sites.GetAll()
 		if err != nil {
@@ -144,6 +144,7 @@ func (app *application) getAllAndCompareRoutine() {
 			go app.getAndComparePost(s)
 		}
 	}
+	fmt.Printf("\ngetAllAndCompareRoutine finished.\n")
 }
 
 func (app *application) compareHashes(url string, pagehash string) error {
@@ -157,6 +158,7 @@ func (app *application) compareHashes(url string, pagehash string) error {
 			return err
 		}
 	}
+	fmt.Printf("\n%s\n%s\n%s\n\n", url, pagehash, s.Pagehash)
 	if s.Pagehash == pagehash {
 		fmt.Printf("No changes on this page.\n")
 		return nil
@@ -224,9 +226,7 @@ func (app *application) showButton(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	url := r.PostForm.Get("url")
-	fmt.Printf("The URL is %s\n", url)
 	s, err := app.sites.Get(url)
-	fmt.Printf("Site values is: %v\n", s)
 	files := []string{
 		"ui/html/partials/row.tmpl.html",
 	}

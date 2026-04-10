@@ -43,7 +43,7 @@ func driveHash(url, selector string) (string, string) {
 	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
 
-	ctx, cancel = context.WithTimeout(ctx, 120*time.Second)
+	ctx, cancel = context.WithTimeout(ctx, 5*time.Minute)
 	defer cancel()
 
 	var html string
