@@ -87,24 +87,8 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
 }
 
-/*
-func (app *application) getAndComparePost(w http.ResponseWriter, r *http.Request) {
-	form := app.getUrlSelectorPostForm(w, r)
-	s, err := app.sites.Get(form.Url)
-	if err != nil {
-		app.logger.Error(err.Error())
-		return
-	}
-	_, pagehash := driveHash(s.Url, s.Selector)
-
-	err = app.compareHashes(s.Url, pagehash)
-	if err != nil {
-		app.logger.Error(err.Error())
-	}
-}
-*/
-
 func (app *application) getAndComparePost(s models.Site) {
+	fmt.Printf("\ns.Url: %s\ns.Selector: %s\n", s.Url, s.Selector)
 	_, pagehash := driveHash(s.Url, s.Selector)
 
 	err := app.compareHashes(s.Url, pagehash)
@@ -158,7 +142,7 @@ func (app *application) compareHashes(url string, pagehash string) error {
 			return err
 		}
 	}
-	fmt.Printf("\n%s\n%s\n%s\n\n", url, pagehash, s.Pagehash)
+	fmt.Printf("\n%s\npagehash:%s\ns.Pagehash:%s\n\n", url, pagehash, s.Pagehash)
 	if s.Pagehash == pagehash {
 		fmt.Printf("No changes on this page.\n")
 		return nil
@@ -170,6 +154,7 @@ func (app *application) compareHashes(url string, pagehash string) error {
 	if err != nil {
 		fmt.Printf("compareHashes error: %s", err.Error())
 		app.logger.Error(err.Error())
+		return err
 	}
 	// sendUpdateMail(s.Url)
 

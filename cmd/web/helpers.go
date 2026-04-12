@@ -12,6 +12,7 @@ import (
 
 	"time"
 
+	"github.com/chromedp/cdproto/network"
 	"github.com/chromedp/chromedp"
 	"github.com/go-playground/form/v4"
 )
@@ -33,6 +34,7 @@ func driveHash(url, selector string) (string, string) {
 
 	opts := append(chromedp.DefaultExecAllocatorOptions[:],
 		chromedp.Flag("headless", false),
+		chromedp.Flag("lang", "ja-JP"),
 		chromedp.UserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"),
 		chromedp.NoDefaultBrowserCheck,
 		chromedp.Flag("disable-blink-features", "AutomationControlled"),
@@ -43,18 +45,24 @@ func driveHash(url, selector string) (string, string) {
 	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
 
-	ctx, cancel = context.WithTimeout(ctx, 5*time.Minute)
+	ctx, cancel = context.WithTimeout(ctx, 2*time.Minute)
 	defer cancel()
 
 	var html string
 
 	err := chromedp.Run(
 		ctx,
+		network.Enable(),
+		network.SetExtraHTTPHeaders(network.Headers{
+			"Accept-Language": "ja-JP,ja;q=0.9",
+		}),
 		chromedp.Navigate(url),
 		// Wait for the specific element to appear in the DOM
+		chromedp.Sleep(10*time.Second),
 		chromedp.WaitVisible(selector, chromedp.ByQuery),
-		chromedp.OuterHTML(selector, &html),
+		chromedp.InnerHTML(selector, &html),
 	)
+	fmt.Printf("\nInnerHTML: %s\n", html)
 
 	if err != nil {
 		fmt.Printf("driveHash method: %s", err.Error())
