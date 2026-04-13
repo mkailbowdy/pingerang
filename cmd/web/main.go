@@ -40,11 +40,15 @@ func main() {
 		mysqlConnDsn = "web:Soul2001@/pingerang?parseTime=true"
 	}
 
-	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
+	file, err := os.OpenFile("app.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+	logger := slog.New(slog.NewJSONHandler(file, &slog.HandlerOptions{
 		Level: slog.LevelInfo,
 	}))
 	var db *sql.DB
-	var err error
 	for i := 1; i <= 10; i++ {
 		db, err = openDB(mysqlConnDsn)
 		if err != nil {
