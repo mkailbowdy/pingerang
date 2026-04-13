@@ -70,7 +70,12 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	urlhash, pagehash := driveHash(form.Url, form.Selector)
+	urlhash, pagehash, err := driveHash(form.Url, form.Selector)
+	if err != nil {
+		app.logger.Error(err.Error())
+		fmt.Printf("\ndrivehash error: %s\n", err.Error())
+		return
+	}
 	app.logger.Info("Hashes created.", "urlhash", urlhash)
 	if len(urlhash) == 0 || len(pagehash) == 0 {
 		app.logger.Error("There's a problem with the css selector you're using. Please fix the syntax and try again.")
@@ -89,9 +94,17 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 
 func (app *application) getAndComparePost(s models.Site) {
 	fmt.Printf("\ns.Url: %s\ns.Selector: %s\n", s.Url, s.Selector)
-	_, pagehash := driveHash(s.Url, s.Selector)
+	selector := s.Selector
+	url := s.Url
+	fmt.Printf("debug: selector: %s\nurl: %s", selector, url)
+	_, pagehash, err := driveHash(url, selector)
+	if err != nil {
+		app.logger.Error(err.Error())
+		fmt.Printf("\ndrivehash error: %s\n", err.Error())
+		return
+	}
 
-	err := app.compareHashes(s.Url, pagehash)
+	err = app.compareHashes(s.Url, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
 	}
@@ -179,7 +192,12 @@ func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request)
 		}
 		return
 	}
-	urlhash, pagehash := driveHash(s.Url, s.Selector)
+	urlhash, pagehash, err := driveHash(s.Url, s.Selector)
+	if err != nil {
+		app.logger.Error(err.Error())
+		fmt.Printf("\ndrivehash error: %s\n", err.Error())
+		return
+	}
 	err = app.sites.Update(urlhash, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
