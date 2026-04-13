@@ -1,5 +1,4 @@
 .idea/
-app.logtls/
-app.log
 DockerfileTEST
 .env
+app.log
