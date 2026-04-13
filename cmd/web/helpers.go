@@ -42,7 +42,7 @@ func driveHash(url, selector string) (string, string, error) {
 	ctx, cancel := chromedp.NewContext(allocCtx)
 	defer cancel()
 
-	ctx, cancel = context.WithTimeout(ctx, 5*time.Minute)
+	ctx, cancel = context.WithTimeout(ctx, 3*time.Minute)
 	defer cancel()
 
 	var html string
@@ -52,7 +52,7 @@ func driveHash(url, selector string) (string, string, error) {
 		chromedp.Navigate(url),
 		// Wait for the specific element to appear in the DOM
 		chromedp.Sleep(10*time.Second),
-		chromedp.WaitVisible(selector, chromedp.ByQuery),
+		chromedp.WaitVisible(selector, chromedp.BySearch),
 		chromedp.InnerHTML(selector, &html),
 	)
 	fmt.Printf("\nInnerHTML: %s\n", html)

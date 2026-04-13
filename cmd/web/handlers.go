@@ -96,7 +96,7 @@ func (app *application) getAndComparePost(s models.Site) {
 	fmt.Printf("\ns.Url: %s\ns.Selector: %s\n", s.Url, s.Selector)
 	selector := s.Selector
 	url := s.Url
-	fmt.Printf("debug: selector: %s\nurl: %s", selector, url)
+	fmt.Printf("\ndebug: selector: %s\nurl: %s\n", selector, url)
 	_, pagehash, err := driveHash(url, selector)
 	if err != nil {
 		app.logger.Error(err.Error())
@@ -107,6 +107,8 @@ func (app *application) getAndComparePost(s models.Site) {
 	err = app.compareHashes(s.Url, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
+		fmt.Printf("%s had a problem when comparing hashes.", s.Url)
+		return
 	}
 }
 
@@ -125,7 +127,7 @@ func (app *application) removeSite(w http.ResponseWriter, r *http.Request) {
 func (app *application) getAllAndCompareRoutine() {
 	// To Do: Run at the 50th minute of every hour.(e.g. 10:50, 11:50,...)
 	// Once an hour
-	ticker := time.NewTicker(5 * time.Minute)
+	ticker := time.NewTicker(60 * time.Minute)
 
 	defer ticker.Stop()
 	for range ticker.C {
