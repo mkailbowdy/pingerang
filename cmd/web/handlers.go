@@ -70,7 +70,7 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	urlhash, pagehash, err := driveHash(form.Url, form.Selector)
+	urlhash, pagehash, err := app.driveHash(form.Url, form.Selector)
 	if err != nil {
 		app.logger.Error(err.Error())
 		fmt.Printf("\ndrivehash error: %s\n", err.Error())
@@ -92,12 +92,11 @@ func (app *application) createUrlPost(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
 }
 
-func (app *application) getAndComparePost(s models.Site) {
-	fmt.Printf("\ns.Url: %s\ns.Selector: %s\n", s.Url, s.Selector)
-	selector := s.Selector
-	url := s.Url
-	fmt.Printf("\ndebug: selector: %s\nurl: %s\n", selector, url)
-	_, pagehash, err := driveHash(url, selector)
+func (app *application) getAndComparePost(s models.Site, semaphore chan struct{}) {
+	defer app.wg.Done()
+	semaphore <- struct{}{}
+	defer func() { <-semaphore }()
+	_, pagehash, err := app.driveHash(s.Url, s.Selector)
 	if err != nil {
 		app.logger.Error(err.Error())
 		fmt.Printf("\ndrivehash error: %s\n", err.Error())
@@ -107,28 +106,15 @@ func (app *application) getAndComparePost(s models.Site) {
 	err = app.compareHashes(s.Url, pagehash)
 	if err != nil {
 		app.logger.Error(err.Error())
-		fmt.Printf("%s had a problem when comparing hashes.", s.Url)
+		fmt.Printf("%s had a problem when comparing hashes.\n", s.Url)
 		return
-	}
-}
-
-func (app *application) removeSite(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(r.PathValue("id"))
-	if id <= 0 || err != nil {
-		app.logger.Error(err.Error())
-		return
-	}
-	err = app.sites.Delete(id)
-	if err != nil {
-		app.logger.Error(err.Error())
 	}
 }
 
 func (app *application) getAllAndCompareRoutine() {
-	// To Do: Run at the 50th minute of every hour.(e.g. 10:50, 11:50,...)
-	// Once an hour
-	ticker := time.NewTicker(60 * time.Minute)
-
+	// Create a buffered channel with a capacity of 3.
+	semaphore := make(chan struct{}, 3)
+	ticker := time.NewTicker(10 * time.Second)
 	defer ticker.Stop()
 	for range ticker.C {
 		fmt.Printf("\nRunning: getAllAndCompareRoutine\n")
@@ -140,8 +126,11 @@ func (app *application) getAllAndCompareRoutine() {
 		}
 
 		for _, s := range sites {
-			go app.getAndComparePost(s)
+			app.wg.Add(1)
+			go app.getAndComparePost(s, semaphore)
 		}
+
+		app.wg.Wait()
 	}
 	fmt.Printf("\ngetAllAndCompareRoutine finished.\n")
 }
@@ -194,7 +183,7 @@ func (app *application) updateHashesPost(w http.ResponseWriter, r *http.Request)
 		}
 		return
 	}
-	urlhash, pagehash, err := driveHash(s.Url, s.Selector)
+	urlhash, pagehash, err := app.driveHash(s.Url, s.Selector)
 	if err != nil {
 		app.logger.Error(err.Error())
 		fmt.Printf("\ndrivehash error: %s\n", err.Error())
@@ -383,4 +372,15 @@ func (app *application) userLogoutPost(w http.ResponseWriter, r *http.Request) {
 
 func ping(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("OK"))
+}
+func (app *application) removeSite(w http.ResponseWriter, r *http.Request) {
+	id, err := strconv.Atoi(r.PathValue("id"))
+	if id <= 0 || err != nil {
+		app.logger.Error(err.Error())
+		return
+	}
+	err = app.sites.Delete(id)
+	if err != nil {
+		app.logger.Error(err.Error())
+	}
 }

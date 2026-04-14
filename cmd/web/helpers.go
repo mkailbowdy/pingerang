@@ -27,19 +27,9 @@ func (app *application) getUrlSelectorPostForm(w http.ResponseWriter, r *http.Re
 	return form
 }
 
-func driveHash(url, selector string) (string, string, error) {
+func (app *application) driveHash(url, selector string) (string, string, error) {
 
-	opts := append(chromedp.DefaultExecAllocatorOptions[:],
-		chromedp.Flag("headless", false),
-		chromedp.Flag("lang", "ja-JP"),
-		chromedp.UserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"),
-		chromedp.NoDefaultBrowserCheck,
-		chromedp.Flag("disable-blink-features", "AutomationControlled"),
-	)
-	allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
-	defer cancel()
-
-	ctx, cancel := chromedp.NewContext(allocCtx)
+	ctx, cancel := chromedp.NewContext(*app.allocCtx)
 	defer cancel()
 
 	ctx, cancel = context.WithTimeout(ctx, 3*time.Minute)
@@ -50,15 +40,13 @@ func driveHash(url, selector string) (string, string, error) {
 	err := chromedp.Run(
 		ctx,
 		chromedp.Navigate(url),
-		// Wait for the specific element to appear in the DOM
-		chromedp.Sleep(10*time.Second),
 		chromedp.WaitVisible(selector, chromedp.BySearch),
 		chromedp.InnerHTML(selector, &html),
 	)
 	fmt.Printf("\nInnerHTML: %s\n", html)
 
 	if err != nil {
-		fmt.Printf("driveHash method: %s", err.Error())
+		fmt.Printf("driveHash method for %s with selector %s: %s", url, selector, err.Error())
 		return "", "", err
 	}
 
