@@ -1,71 +1,138 @@
 {{define "title"}}Dashboard{{end}} {{define "main"}}
-<h2 class="text-4xl text-green-500">Your URLs</h2>
+<section class="space-y-6 py-4">
+  <div class="flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+    <div>
+      <p class="text-xs uppercase tracking-[0.28em] text-fuchsia-200">
+        Command Deck
+      </p>
+      <h1 class="mt-2 text-4xl font-black uppercase text-amber-200 text-shadow-pixel sm:text-5xl">
+        Your URLs
+      </h1>
+      <p class="mt-3 max-w-2xl text-sm leading-6 text-cyan-50/80">
+        Watch slots, change alerts, and selector patrols in one guild ledger.
+      </p>
+    </div>
+    <a href="/url/create" class="pixel-button self-start lg:self-auto">Add URL</a>
+  </div>
 
-<ul role="list" class="divide-y divide-gray-100 dark:divide-white/5">
-  {{range .Sites}}
-  <li class="flex justify-between gap-x-6 py-5" id="site{{.ID}}">
-    <div class="flex min-w-0 gap-x-4">
-      <div class="min-w-0 flex-auto">
-        <div
-          class="flex items-center text-sm/6 font-semibold text-gray-500 dark:text-white"
-        >
+  {{if .Sites}}
+  <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_18rem]">
+    <ul role="list" class="space-y-4">
+      {{range .Sites}}
+      <li class="pixel-panel p-4 sm:p-5" id="site{{.ID}}">
+        <div class="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
           <div class="min-w-0 flex-1">
-            <p class="line-clamp-2 break-words">{{.Url}}</p>
+            <div class="flex flex-wrap items-center gap-3">
+              {{if .Changed}}
+              <span class="pixel-badge bg-rose-300 text-[#330815]">Changed</span>
+              {{else}}
+              <span class="pixel-badge bg-lime-300 text-[#10240a]">Stable</span>
+              {{end}}
+              <span class="text-xs uppercase tracking-[0.22em] text-cyan-200"
+                >Quest #{{.ID}}</span
+              >
+            </div>
+            <p class="mt-4 break-all text-base font-black leading-7 text-white sm:text-lg">
+              {{.Url}}
+            </p>
+            <div class="mt-4">{{if .Changed}} {{template "change" .}} {{else}} {{template "nochange" .}} {{end}}</div>
           </div>
-          <a href="{{.Url}}" class="text-amber-500"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="size-4 inline-block ml-2"
+
+          <div class="flex shrink-0 flex-wrap gap-2 xl:justify-end">
+            <a
+              href="{{.Url}}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pixel-icon-button"
+              aria-label="Open {{.Url}}"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-              />
-            </svg>
-          </a>
-          <div
-            class="text-red-500"
-            hx-delete="/url/{{.ID}}"
-            hx-swap="outerhtml"
-            hx-target="#site{{.ID}}"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="size-6 inline-block ml-2"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="size-5"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H6.75A2.25 2.25 0 0 0 4.5 8.25v9A2.25 2.25 0 0 0 6.75 19.5h9A2.25 2.25 0 0 0 18 17.25V10.5M15 4.5h4.5M19.5 4.5V9M10.5 13.5l9-9"
+                />
+              </svg>
+            </a>
+            <button
+              type="button"
+              class="pixel-icon-button pixel-danger"
+              hx-delete="/url/{{.ID}}"
+              hx-swap="outerHTML"
+              hx-target="#site{{.ID}}"
+              hx-confirm="Delete this tracked URL?"
+              aria-label="Delete {{.Url}}"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18 18 6M6 6l12 12"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="size-5"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
         </div>
-        {{if .Changed}} {{template "change" .}} {{else}} {{template
-        "nochange".}} {{end}}
+
+        <div class="mt-5 grid gap-3 border-t-2 border-cyan-200/30 pt-4 text-xs uppercase tracking-[0.18em] text-cyan-50/70 sm:grid-cols-2">
+          <p>Created: <span class="text-amber-100">{{.Created | humanDate}}</span></p>
+          <p>Updated: <span class="text-amber-100">{{.UpdatedAt | humanDate}}</span></p>
+        </div>
+      </li>
+      {{end}}
+    </ul>
+
+    <aside class="pixel-panel h-fit p-5">
+      <p class="text-xs uppercase tracking-[0.28em] text-fuchsia-200">
+        Party Stats
+      </p>
+      <div class="mt-5 space-y-4">
+        <div class="pixel-stat">
+          <span>Tracked</span>
+          <strong>{{len .Sites}}</strong>
+        </div>
+        <div class="pixel-stat">
+          <span>Mode</span>
+          <strong>Patrol</strong>
+        </div>
+        <div class="pixel-stat">
+          <span>Sync</span>
+          <strong class="text-lime-200">Live</strong>
+        </div>
       </div>
-    </div>
-    <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-      <p class="text-sm/6 text-gray-900 dark:text-white">
-        {{ .Created | humanDate}}
-      </p>
-      <p class="mt-1 text-xs/5 text-gray-500 dark:text-gray-400">
-        Last updated
-        <time datetime="2023-01-23T13:23Z">{{.UpdatedAt | humanDate}}</time>
-      </p>
-    </div>
-  </li>
+    </aside>
+  </div>
   {{else}}
-  <li>There's nothing to see here yet!</li>
+  <div class="pixel-panel grid gap-6 p-6 md:grid-cols-[1fr_auto] md:items-center">
+    <div>
+      <p class="text-xs uppercase tracking-[0.28em] text-fuchsia-200">
+        Empty Ledger
+      </p>
+      <h2 class="mt-3 text-2xl font-black uppercase text-amber-100">
+        No quests assigned
+      </h2>
+      <p class="mt-2 max-w-xl text-sm leading-6 text-cyan-50/80">
+        Add the first URL and selector to begin a page patrol.
+      </p>
+    </div>
+    <a href="/url/create" class="pixel-button">Add URL</a>
+  </div>
   {{end}}
-</ul>
+</section>
 {{end}}

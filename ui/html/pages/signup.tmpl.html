@@ -1,117 +1,97 @@
-<!--
-	This example requires updating your template:
-
-	```
-	<html class="h-full bg-white dark:bg-gray-900">
-	<body class="h-full">
-	```
--->
 {{define "title"}}Signup{{end}} {{define "main"}}
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <img
-      src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-      alt="Your Company"
-      class="mx-auto h-10 w-auto dark:hidden"
-    />
-    <img
-      src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-      alt="Your Company"
-      class="mx-auto h-10 w-auto not-dark:hidden"
-    />
-    <h2
-      class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white"
-    >
-      Sign up for an account!
-    </h2>
-  </div>
+<section class="mx-auto grid max-w-5xl gap-6 py-8 lg:grid-cols-[1.1fr_0.9fr] lg:py-14">
+  <form action="/user/signup" method="POST" class="pixel-panel p-5 sm:p-7" novalidate>
+    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
+    <p class="text-xs uppercase tracking-[0.28em] text-fuchsia-200">
+      Start Quest
+    </p>
+    <h1 class="mt-2 text-4xl font-black uppercase text-amber-200 text-shadow-pixel">
+      Signup
+    </h1>
 
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form action="/user/signup" method="POST" class="space-y-6" novalidate>
-      <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
+    <div class="mt-6 space-y-5">
       <div>
-        <label
-          for="name"
-          class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100"
-          >Name</label
-        >
-        {{with .Form.FieldErrors.name}}
-        <label class="text-red-500">{{.}}</label>
-        {{end}}
-        <div class="mt-2">
-          <input
-            id="name"
-            type="text"
-            value="{{.Form.Name}}"
-            name="name"
-            required
-            autocomplete="name"
-            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label
-          for="email"
-          class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100"
-          >Email address</label
-        >
-        {{with .Form.FieldErrors.email}}
-        <label class="text-red-500">{{.}}</label>
-        {{end}}
-        <div class="mt-2">
-          <input
-            id="email"
-            type="email"
-            name="email"
-            required
-            autocomplete="email"
-            value="{{.Form.Email}}"
-            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-          />
-        </div>
-      </div>
-
-      <div>
-        <div class="flex items-center justify-between">
-          <label
-            for="password"
-            class="block text-sm/6 font-medium text-gray-900 dark:text-gray-100"
-            >Password</label
-          >
-          {{with .Form.FieldErrors.password}}
-          <label class="text-red-500">{{.}}</label>
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <label for="name" class="pixel-label">Name</label>
+          {{with .Form.FieldErrors.name}}
+          <span class="pixel-error">{{.}}</span>
           {{end}}
-          <div class="text-sm">
-            <a
-              href="#"
-              class="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
-              >Forgot password?</a
-            >
-          </div>
         </div>
-        <div class="mt-2">
-          <input
-            id="password"
-            type="password"
-            name="password"
-            required
-            autocomplete="current-password"
-            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-          />
-        </div>
+        <input
+          id="name"
+          type="text"
+          value="{{.Form.Name}}"
+          name="name"
+          required
+          autocomplete="name"
+          class="pixel-input mt-2"
+        />
       </div>
 
       <div>
-        <button
-          type="submit"
-          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500"
-        >
-          Sign up!
-        </button>
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <label for="email" class="pixel-label">Email</label>
+          {{with .Form.FieldErrors.email}}
+          <span class="pixel-error">{{.}}</span>
+          {{end}}
+        </div>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          value="{{.Form.Email}}"
+          class="pixel-input mt-2"
+        />
       </div>
-    </form>
+
+      <div>
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <label for="password" class="pixel-label">Password</label>
+          {{with .Form.FieldErrors.password}}
+          <span class="pixel-error">{{.}}</span>
+          {{end}}
+        </div>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          required
+          autocomplete="new-password"
+          class="pixel-input mt-2"
+        />
+      </div>
+    </div>
+
+    <button type="submit" class="pixel-button mt-8 w-full">Create Save</button>
+
+    <p class="mt-6 text-center text-sm text-cyan-50/75">
+      Already in the guild?
+      <a href="/user/login" class="text-amber-200 underline decoration-fuchsia-300 decoration-2 underline-offset-4"
+        >Load your save</a
+      >
+    </p>
+  </form>
+
+  <div class="pixel-panel overflow-hidden p-6">
+    <div class="space-y-5">
+      <div class="pixel-stat">
+        <span>Class</span>
+        <strong>Watcher</strong>
+      </div>
+      <div class="pixel-stat">
+        <span>Skill</span>
+        <strong>Page Sense</strong>
+      </div>
+      <div class="pixel-stat">
+        <span>Reward</span>
+        <strong class="text-lime-200">Change Alerts</strong>
+      </div>
+    </div>
+    <div class="mt-8 h-5 border-2 border-amber-100 bg-[#070314]">
+      <div class="h-full w-3/4 bg-gradient-to-r from-fuchsia-400 via-cyan-300 to-lime-300"></div>
+    </div>
   </div>
-</div>
+</section>
 {{end}}

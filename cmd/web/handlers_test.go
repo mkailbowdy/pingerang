@@ -27,7 +27,7 @@ func TestUserSignup(t *testing.T) {
 		validName     = "Bob"
 		validPassword = "validPa$$word"
 		validEmail    = "bob@example.com"
-		formTag       = `<form action="/user/signup" method="POST" class="space-y-6" novalidate>`
+		formTag       = `<form action="/user/signup" method="POST" class="pixel-panel p-5 sm:p-7" novalidate>`
 	)
 
 	tests := []struct {

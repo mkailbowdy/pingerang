@@ -1,92 +1,62 @@
 {{define "title"}}Create new url to follow{{end}} {{define "main"}}
-<div class="bg-white dark:bg-gray-900 dark:scheme-dark">
-  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-    <div class="mx-auto max-w-2xl">
-      <form action="/url/create" method="POST">
-        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
-        <div class="space-y-12">
-          <div class="border-b border-gray-900/10 pb-12 dark:border-white/10">
-            <h2 class="text-base/7 font-semibold text-gray-900 dark:text-white">
-              Add a new URL to monitor
-            </h2>
-            <p class="mt-1 text-sm/6 text-gray-600 dark:text-gray-400">
-              Enter the URL and CSS selector of the page you want to monitor.
-            </p>
-
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div class="sm:col-span-4">
-                <label
-                  for="url"
-                  class="block text-sm/6 font-medium text-gray-900 dark:text-white"
-                  >URL</label
-                >
-                {{with .Form.Validator.FieldErrors.url}}
-                <label class="text-red-500">{{.}}</label>
-                {{end}}
-                <div class="mt-2">
-                  <div
-                    class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600 dark:bg-white/5 dark:outline-white/10 dark:focus-within:outline-indigo-500"
-                  >
-                    <input
-                      value="{{.Form.Url}}"
-                      id="url"
-                      type="text"
-                      name="url"
-                      placeholder="https://www.example.com"
-                      class="block min-w-0 grow bg-white py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6 dark:bg-transparent dark:text-white dark:placeholder:text-gray-500"
-                    />
-                  </div>
-                  <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">
-                    You MUST includes the protocol (e.g. https://) in the URL.
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-span-full">
-                <label
-                  for="selector"
-                  class="block text-sm/6 font-medium text-gray-900 dark:text-white"
-                  >CSS Selector</label
-                >
-                {{with .Form.Validator.FieldErrors.selector}}
-                <label class="text-red-500">{{.}}</label>
-                {{end}}
-                <div class="mt-2">
-                  <textarea
-                    id="selector"
-                    name="selector"
-                    rows="3"
-                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"
-                  >
-{{.Form.Selector}}</textarea
-                  >
-                </div>
-                <p class="mt-3 text-sm/6 text-gray-600 dark:text-gray-400">
-                  Write a CSS selector to identify the part of the page you want
-                  to monitor.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-          <button
-            type="button"
-            class="text-sm/6 font-semibold text-gray-900 dark:text-white"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:focus-visible:outline-indigo-500"
-          >
-            Save
-          </button>
-        </div>
-      </form>
-    </div>
+<section class="mx-auto max-w-4xl py-6 sm:py-10">
+  <div class="mb-6">
+    <p class="text-xs uppercase tracking-[0.28em] text-fuchsia-200">
+      New Quest
+    </p>
+    <h1 class="mt-2 text-4xl font-black uppercase text-amber-200 text-shadow-pixel sm:text-5xl">
+      Add URL
+    </h1>
   </div>
-</div>
 
+  <form action="/url/create" method="POST" class="pixel-panel p-5 sm:p-7" novalidate>
+    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}" />
+
+    <div class="grid gap-6">
+      <div>
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <label for="url" class="pixel-label">Target URL</label>
+          {{with .Form.Validator.FieldErrors.url}}
+          <span class="pixel-error">{{.}}</span>
+          {{end}}
+        </div>
+        <input
+          value="{{.Form.Url}}"
+          id="url"
+          type="text"
+          name="url"
+          placeholder="https://www.example.com"
+          class="pixel-input mt-2"
+        />
+        <p class="mt-2 text-xs leading-5 text-cyan-50/70">
+          Include http:// or https:// so the patrol can lock on.
+        </p>
+      </div>
+
+      <div>
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <label for="selector" class="pixel-label">CSS Selector</label>
+          {{with .Form.Validator.FieldErrors.selector}}
+          <span class="pixel-error">{{.}}</span>
+          {{end}}
+        </div>
+        <textarea
+          id="selector"
+          name="selector"
+          rows="5"
+          placeholder=".price, #status, main article"
+          class="pixel-input mt-2 min-h-32 resize-y"
+        >{{.Form.Selector}}</textarea>
+        <p class="mt-2 text-xs leading-5 text-cyan-50/70">
+          Choose the page fragment Pingerang should compare.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+      <a href="/dashboard" class="pixel-button pixel-button-secondary">Cancel</a>
+      <button type="submit" class="pixel-button">Save Quest</button>
+    </div>
+  </form>
+</section>
 {{end}}
